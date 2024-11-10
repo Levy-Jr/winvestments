@@ -382,6 +382,11 @@ client-only@0.0.1:
   resolved "https://registry.yarnpkg.com/client-only/-/client-only-0.0.1.tgz#38bba5d403c41ab150bff64a95c85013cf73bca1"
   integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==
 
+clsx@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
+  integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
+
 color-convert@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
@@ -454,6 +459,34 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
+embla-carousel-autoplay@^8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/embla-carousel-autoplay/-/embla-carousel-autoplay-8.3.1.tgz#62b45cf55dc001d82b2ac1829f6b3207e7af35a6"
+  integrity sha512-L8THF1AJJSQtlNa1wZ6lEKh/CiZssE3TsVFtabQNsS+pc1O1O/YTIYCC3khdQAztGMOBf3WfVDIY/4AIfQj3JQ==
+
+embla-carousel-fade@^8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/embla-carousel-fade/-/embla-carousel-fade-8.3.1.tgz#e0c10bb57c1db71115d7cc782d27ffeaa4613b1f"
+  integrity sha512-YUnb222xjkdRDtyC09X59GapaYB6P8baAEHy1rn2UQ0yqixa80kXhG74SoJ6wxLYsZOaw5fZQ2V25p04ltHE/w==
+
+embla-carousel-react@^8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/embla-carousel-react/-/embla-carousel-react-8.3.1.tgz#f6d91f484b00704411524cf01feb80fdcff7dde2"
+  integrity sha512-gBY0zM+2ASvKFwRpTIOn2SLifFqOKKap9R/y0iCpJWS3bc8OHVEn2gAThGYl2uq0N+hu9aBiswffL++OYZOmDQ==
+  dependencies:
+    embla-carousel "8.3.1"
+    embla-carousel-reactive-utils "8.3.1"
+
+embla-carousel-reactive-utils@8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/embla-carousel-reactive-utils/-/embla-carousel-reactive-utils-8.3.1.tgz#8e92407f92f55e5f38ef22d24c018077476f1e11"
+  integrity sha512-Js6rTTINNGnUGPu7l5kTcheoSbEnP5Ak2iX0G9uOoI8okTNLMzuWlEIpYFd1WP0Sq82FFcLkKM2oiO6jcElZ/Q==
+
+embla-carousel@8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-8.3.1.tgz#8f5dcd0dc001977efd2bca54d620b6e6736a1a85"
+  integrity sha512-DutFjtEO586XptDn4cwvBJwsR/8fMa4jUk5Jk2g+/elKgu8mdn0Z2sx33g4JskvbLc1/6P8Xg4QlfELGJFcP5A==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
@@ -496,6 +529,13 @@ foreground-child@^3.1.0:
   dependencies:
     cross-spawn "^7.0.0"
     signal-exit "^4.0.1"
+
+framer-motion@^11.11.11:
+  version "11.11.11"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-11.11.11.tgz#3c058c97ec134afdce77caa20396f0fd82d63b7d"
+  integrity sha512-tuDH23ptJAKUHGydJQII9PhABNJBpB+z0P1bmgKK9QFIssHGlfPd6kxMq00LSKwE27WFsb2z0ovY0bpUyMvfRw==
+  dependencies:
+    tslib "^2.4.0"
 
 fsevents@~2.3.2:
   version "2.3.3"
@@ -999,6 +1039,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+tailwind-merge@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.5.4.tgz#4bf574e81fa061adeceba099ae4df56edcee78d1"
+  integrity sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==
 
 tailwindcss@^3.4.1:
   version "3.4.14"
