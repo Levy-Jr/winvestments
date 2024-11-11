@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import HeaderNav from "@/components/header";
+import Footer from "@/components/footer";
+import WppBtn from "@/components/wpp-btn";
 
 export const metadata: Metadata = {
   title: "W Investments | Imóveis em Curitiba e região",
@@ -18,7 +20,9 @@ export default function RootLayout({
         className={`antialiased`}
       >
         <HeaderNav />
+        <WppBtn />
         {children}
+        <Footer />
       </body>
     </html>
   );

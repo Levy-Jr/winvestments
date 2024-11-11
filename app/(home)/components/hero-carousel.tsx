@@ -9,6 +9,7 @@ import Autoplay from "embla-carousel-autoplay";
 type HeroCarouselProps = {
   banners: {
     href: string;
+    mobileBgImg: string;
     bgImg: string;
   }[]
 }
@@ -29,25 +30,26 @@ const HeroCarousel = ({ banners }: HeroCarouselProps) => {
         <ul className="embla__container flex">
           {banners.map((banner, index) => (
             <li className="flex-[0_0_100%] min-h-[100svh]" key={index}>
-              <a className="block bg-center bg-cover h-full"
+              <a className="block bg-center bg-cover h-full banner-bg"
                 style={{
-                  backgroundImage: `url(${banner.bgImg})`
-                }}
+                  '--mobile-bg': `url(${banner.mobileBgImg})`,
+                  '--desktop-bg': `url(${banner.bgImg})`,
+                } as React.CSSProperties}
                 target="_blank"
                 rel="noopener noreferrer"
                 href={banner.href}
               >
-                <button className="bg-white/80 absolute bottom-[3.375rem] right-12 text-[#666] py-[.875rem] px-[5.25rem] rounded-[100vmax]">CONHEÇA</button>
+                <button className="bg-white/80 absolute bottom-[2.25rem] md:bottom-[5rem] lg:bottom-[3.375rem] right-1/2 translate-x-1/2 md:right-12 md:translate-x-0 text-[#666] py-[.5rem] md:py-[.875rem] px-[5.25rem] rounded-[100vmax]">CONHEÇA</button>
               </a>
             </li>
           ))}
         </ul>
-        <ul className="mx-4 flex items-center justify-center flex-wrap gap-x-4 gap-y-2 absolute bottom-4 z-20">
+        <ul className="absolute w-[90%] md:w-auto right-1/2 translate-x-1/2 md:right-auto md:translate-x-0 flex items-center justify-center md:flex-wrap gap-2 md:gap-x-4 gap-y-2 bottom-4 z-20">
           {scrollSnaps.map((_, index) => (
-            <li className="w-[6.25rem] h-3" key={index}>
+            <li className="flex-1 md:flex-none md:w-[6.25rem] h-3" key={index}>
               <SlideButton
                 onClick={() => onSlideButtonClick(index)}
-                className={cn("w-full h-full bg-white/80 rounded-[.625rem]", index == selectedIndex ? "bg-[#2F4856]" : "")}
+                className={cn("w-full h-full bg-white rounded-[.625rem] opacity-80 hover:opacity-90", index == selectedIndex ? "bg-[#2F4856]" : "")}
               />
             </li>
           ))}

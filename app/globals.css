@@ -7,3 +7,13 @@ body {
   background: var(--background);
   font-family: Roboto, sans-serif;
 }
+
+.banner-bg {
+  background-image: var(--mobile-bg);
+}
+
+@media (min-width: 48em) {
+  .banner-bg {
+    background-image: var(--desktop-bg);
+  }
+}

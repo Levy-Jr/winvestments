@@ -6,72 +6,88 @@ const HeroSection = () => {
   const banners = [
     {
       href: "https://destaques.winvestments.com.br/angariacoes",
+      mobileBgImg: "/banners/curitiba-banner-mobile.webp",
       bgImg: "/banners/curitiba-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/jardins-artefacto-by-swell",
-      bgImg: "../../banners/artefacto-banner.webp",
+      mobileBgImg: "/banners/artefacto-banner-mobile.webp",
+      bgImg: "/banners/artefacto-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/caieiras-55",
-      bgImg: "../../../banners/caieiras-banner.webp",
+      mobileBgImg: "/banners/caieiras-banner-mobile.webp",
+      bgImg: "/banners/caieiras-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/casa-nomaa",
-      bgImg: "../../../banners/casa-nomaa-banner.webp",
+      mobileBgImg: "/banners/casa-nomaa-banner-mobile.webp",
+      bgImg: "/banners/casa-nomaa-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/empreendimentos-cima",
-      bgImg: "../../../banners/cima-banner.webp",
+      mobileBgImg: "/banners/cima-banner-mobile.webp",
+      bgImg: "/banners/cima-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/elysium",
-      bgImg: "../../../banners/elysium-banner.webp",
+      mobileBgImg: "/banners/elysium-banner-mobile.webp",
+      bgImg: "/banners/elysium-banner.webp",
     },
     {
       href: "/",
-      bgImg: "../../../banners/undertaking-banner.webp",
+      mobileBgImg: "/banners/undertaking-banner-mobile.webp",
+      bgImg: "/banners/undertaking-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/kaa-laguna",
-      bgImg: "../../../banners/kaa-banner.webp",
+      mobileBgImg: "/banners/kaa-banner-mobile.webp",
+      bgImg: "/banners/kaa-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/icaro-casa-terrea",
-      bgImg: "../../../banners/icaro-banner.webp",
+      mobileBgImg: "/banners/icaro-banner-mobile.webp",
+      bgImg: "/banners/icaro-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/the-pineyards",
-      bgImg: "../../../banners/pineyards-banner.webp",
+      mobileBgImg: "/banners/pineyards-banner-mobile.webp",
+      bgImg: "/banners/pineyards-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/casamia",
-      bgImg: "../../../banners/casamia-banner.webp",
+      mobileBgImg: "/banners/casamia-banner-mobile.webp",
+      bgImg: "/banners/casamia-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/empreendimentos-bouw",
-      bgImg: "../../../banners/bouw-banner.webp",
+      mobileBgImg: "/banners/bouw-banner-mobile.webp",
+      bgImg: "/banners/bouw-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/trevi",
-      bgImg: "../../../banners/trevi-banner.webp",
+      mobileBgImg: "/banners/trevi-banner-mobile.webp",
+      bgImg: "/banners/trevi-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/reserva-barigui-mirante-colina",
-      bgImg: "../../../banners/reserva-banner.webp",
+      mobileBgImg: "/banners/reserva-banner-mobile.webp",
+      bgImg: "/banners/reserva-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/prontos",
-      bgImg: "../../../banners/high-standard-banner.webp",
+      mobileBgImg: "/banners/high-standard-banner-mobile.webp",
+      bgImg: "/banners/high-standard-banner.webp",
     },
     {
       href: "https://destaques.winvestments.com.br/amira-cabral",
-      bgImg: "../../../banners/amira-banner.webp",
+      mobileBgImg: "/banners/amira-banner-mobile.webp",
+      bgImg: "/banners/amira-banner.webp",
     },
   ]
 
   return (
-    <section>
+    <section className="min-h-[100svh]">
       <HeroCarousel banners={banners} />
     </section>
   )

@@ -21,7 +21,7 @@ const HeaderNav = () => {
               src={SearchIcon}
               alt="Ícone de pesquisa"
             />
-            BUSCAR IMÓVEIS
+            <span>BUSCAR <span className="hidden md:inline">IMÓVEIS</span></span>
           </button>
           <button className="bg-black/75 py-4 pl-4 pr-8 rounded-l-[100vmax] text-white">
             MENU
