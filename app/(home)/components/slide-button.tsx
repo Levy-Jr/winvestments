@@ -3,11 +3,6 @@
 import { ComponentPropsWithRef, useCallback, useEffect, useState } from "react"
 import { EmblaCarouselType } from "embla-carousel"
 
-type UseSlideButtonProps = {
-  emblaApi: EmblaCarouselType | undefined;
-  onButtonClick?: (emblaApi: EmblaCarouselType) => void;
-}
-
 type UseSlideButtonType = {
   selectedIndex: number;
   scrollSnaps: number[];
