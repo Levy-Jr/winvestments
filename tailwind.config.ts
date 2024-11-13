@@ -11,9 +11,13 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        grayAccent: '#666'
       },
       width: {
-        'container': 'min(95%,84.375rem)'
+        'container': 'min(95%,90rem)'
+      },
+      fontFamily: {
+        newsReader: ['var(--font-news-reader)']
       }
     },
   },

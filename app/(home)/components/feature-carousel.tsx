@@ -25,14 +25,14 @@ const FeatureCarousel = ({ features }: FeatureCarouselProps) => {
           {features.map((feature, index) => (
             <li
               key={index}
-              className="flex-[0_0_100%] bg-cover bg-center w-full h-[80vh] md:h-[60vh] max-h-[43.75rem]"
+              className="flex-[0_0_100%] relative bg-cover bg-center w-full h-[80vh] md:h-[60vh] max-h-[43.75rem]"
               style={{
                 backgroundImage: `url(${feature.bgImg})`
               }}
             >
               <a
                 href={feature.href}
-                className="inline-block absolute bottom-5 right-5 py-[.875rem] px-[5.25rem] bg-white/80 text-[#666] rounded-[100vmax]"
+                className="inline-block absolute bottom-5 right-5 py-[.875rem] px-[5.25rem] bg-white/80 text-grayAccent rounded-[100vmax]"
               >
                 CONHEÇA
               </a>

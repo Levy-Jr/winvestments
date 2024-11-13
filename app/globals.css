@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  background-color: #666;
+  color: #fff;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -12,7 +17,7 @@ body {
   background-image: var(--mobile-bg);
 }
 
-@media (min-width: 48em) {
+@media (min-width: 37.5em) {
   .banner-bg {
     background-image: var(--desktop-bg);
   }

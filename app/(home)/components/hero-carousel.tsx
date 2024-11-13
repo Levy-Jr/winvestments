@@ -39,7 +39,7 @@ const HeroCarousel = ({ banners }: HeroCarouselProps) => {
                 rel="noopener noreferrer"
                 href={banner.href}
               >
-                <button className="bg-white/80 absolute bottom-[2.25rem] md:bottom-[5rem] lg:bottom-[3.375rem] right-1/2 translate-x-1/2 md:right-12 md:translate-x-0 text-[#666] py-[.5rem] md:py-[.875rem] px-[5.25rem] rounded-[100vmax]">CONHEÇA</button>
+                <button className="bg-white/80 absolute bottom-[2.25rem] md:bottom-[5rem] lg:bottom-[3.375rem] right-1/2 translate-x-1/2 md:right-12 md:translate-x-0 text-grayAccent py-[.5rem] md:py-[.875rem] px-[5.25rem] rounded-[100vmax]">CONHEÇA</button>
               </a>
             </li>
           ))}

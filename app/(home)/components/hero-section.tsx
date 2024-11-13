@@ -88,6 +88,7 @@ const HeroSection = () => {
 
   return (
     <section className="min-h-[100svh]">
+      <h1 className="sr-only">Asessoria Imobiliária W Investments</h1>
       <HeroCarousel banners={banners} />
     </section>
   )
