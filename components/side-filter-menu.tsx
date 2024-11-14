@@ -1,0 +1,185 @@
+"use client"
+
+import { motion, Variants } from "framer-motion"
+import CloseIcon from "@/public/header/close-icon.svg"
+import Image from "next/image"
+import { SetStateAction, useCallback, useEffect, useRef, useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import processFilters from "@/utils/process-backend-filters"
+import SideFilterFields from "./side-filter-fields"
+
+const PAGE_SIZE = 12
+
+const getData = async (filtros: any) => {
+  const uri = process.env.BACKEND_API_URI ?? process.env.NEXT_PUBLIC_BACKEND_API_URI;
+  const empresa_id: any = process.env.EMPRESA_ID ?? process.env.NEXT_PUBLIC_EMPRESA_ID;
+
+  const params_estates = new URLSearchParams({
+    limit: PAGE_SIZE.toString(),
+    startAt: (0).toString(),
+    filtros: JSON.stringify(processFilters(filtros)),
+    empresa_id: empresa_id
+  })
+
+  console.log(params_estates)
+
+  const params = new URLSearchParams({
+    empresa_id
+  })
+
+  const districtsResponse = await fetch(`${uri}/imoveis/bairros-por-cidade?${params_estates}`)
+
+  const citiesParams = new URLSearchParams({
+    empresa_id,
+    site: '1'
+  })
+
+  const cities = await fetch(`${uri}/cidades?${citiesParams.toString()}`, {
+    next: { tags: ["imoveis-info", "imoveis-cidades"], revalidate: 3600 }
+  })
+
+  const codesResponse = await fetch(`${uri}/imoveis/codigos?${params.toString()}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  })
+
+  if (!cities.ok) {
+    throw new Error("Failed to fetch data")
+  }
+
+  return {
+    districts: await districtsResponse.json(),
+    cities: await cities.json(),
+    codes: await codesResponse.json()
+  }
+}
+
+const variants: Variants = {
+  closed: {
+    x: "100%",
+    transition: {
+      bounce: 0
+    }
+  },
+  opened: {
+    x: 0,
+    transition: {
+      bounce: 0
+    }
+  }
+}
+
+type SideFilterMenuProps = {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (value: SetStateAction<boolean>) => void;
+}
+
+const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  /* api */
+  const [cities, setCities] = useState<any[]>()
+  const [districts, setDistricts] = useState<any[]>()
+
+  /* params */
+  const [paramsCity, setParamsCity] = useState<string>(searchParams.get("cidade") ?? "")
+  const [paramsDistrict, setParamsDistrict] = useState<string>(searchParams.get("bairro") ?? "")
+  const [paramsType, setParamsType] = useState<string>(searchParams.get("tipo") ?? "")
+  const [paramsMinValue, setParamsMinValue] = useState<number | "">(Number(searchParams.get("valorMin")) ?? "")
+  const [paramsMaxValue, setParamsMaxValue] = useState<number | "">(Number(searchParams.get("valorMax")) ?? "")
+
+  const [paramsCondominium, setParamsCondominium] = useState<string>("")
+  const [paramsDormitory, setParamsDormitory] = useState<string>("")
+  const [paramsVacancies, setParamsVacancies] = useState<string>("")
+
+  const createQueryString = useCallback((name: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set(name, value)
+
+    return params.toString()
+  }, [searchParams])
+
+  useEffect(() => {
+    const getCities = async () => {
+      const { cities } = await getData(searchParams)
+      setCities(cities)
+    }
+    getCities()
+  }, [])
+
+  useEffect(() => {
+    const getDistricts = async () => {
+      const { districts } = await getData(searchParams)
+      setDistricts(districts)
+    }
+    getDistricts()
+  }, [])
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+
+  }
+
+  const menuRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handler)
+
+    return () => {
+      document.removeEventListener('mousedown', handler)
+    }
+  })
+
+  /* TODO: CREATE ALL THE IMPUTS AND CONNECT THEM WITH THE USESTATES TO MAKE A PUSH ROUTER WITH QUERYSTRINGS */
+
+  return (
+    <motion.div
+      ref={menuRef}
+      className="fixed overflow-y-auto text-lg flex flex-col pt-5 pb-12 w-[min(100%,25rem)] px-[2rem] right-0 top-0 bottom-0"
+      style={{
+        backgroundImage: "url('/marble-bg.webp')"
+      }}
+      initial={false}
+      animate={isMenuOpen ? "opened" : "closed"}
+      variants={variants}
+    >
+      <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <Image
+          className="ml-auto"
+          src={CloseIcon}
+          alt="Fechar"
+        />
+      </button>
+      <form
+        onSubmit={handleSubmit}
+      >
+        <div>
+          <p className="font-newsReader text-center font-light mt-12 mb-5">BUSCA INTELIGENTE</p>
+          <input
+            className="bg-[size:.938rem] bg-[position:.938rem_center] py-3 pl-10 pr-1 text-sm outline-0 rounded-[.938rem] border-0 w-full bg-no-repeat"
+            style={{
+              backgroundImage: "url('/header/search-icon.svg')"
+            }}
+            type="text"
+            placeholder="Rua, bairro, edifício ou código do imóvel"
+          />
+        </div>
+        <SideFilterFields />
+        <button className="block mx-auto bg-[#95a3ab] text-white px-12 py-3 rounded-[100vmax]">BUSCAR IMÓVEL</button>
+      </form>
+    </motion.div>
+  )
+}
+
+export default SideFilterMenu

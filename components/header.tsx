@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import { Variants, motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import SideFilterMenu from "./side-filter-menu"
 
 const variants: Variants = {
   closed: {
@@ -31,13 +32,17 @@ const variants: Variants = {
 
 const HeaderNav = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
   const pathname = usePathname()
   const menuRef = useRef<HTMLDivElement | null>(null)
 
+
+  const toggleFilterMenu = () => setIsFilterOpen(!isFilterOpen)
   const toggleMenu = () => setIsOpen(!isOpen)
 
   useEffect(() => {
     setIsOpen(false)
+    setIsFilterOpen(false)
   }, [pathname])
 
   useEffect(() => {
@@ -103,7 +108,7 @@ const HeaderNav = () => {
           />
         </Link>
         <div className="flex items-center gap-2 sm:gap-5 *:flex *:items-center *:gap-3">
-          <button className="bg-[#fffc] py-[.875rem] px-4 rounded-[100vmax]">
+          <button onClick={toggleFilterMenu} className="bg-[#fffc] py-[.875rem] px-4 rounded-[100vmax]">
             <Image
               src={SearchIcon}
               alt="Ícone de pesquisa"
@@ -123,7 +128,7 @@ const HeaderNav = () => {
           </button>
         </div>
       </div>
-      <div className={cn("", isOpen ? "fixed inset-0 z-50 backdrop-blur-sm" : "")}>
+      <div className={cn("", isOpen || isFilterOpen ? "fixed inset-0 z-50 backdrop-blur-sm" : "")}>
         <motion.nav
           ref={menuRef}
           className="fixed flex flex-col justify-between py-5 px-[3.125rem] right-0 top-0 min-h-[100svh]"
@@ -141,9 +146,9 @@ const HeaderNav = () => {
               alt="Fechar"
             />
           </button>
-          <ul className="flex flex-col h-full text-center gap-3 md:gap-5 px-6 sm:px-8 text-lg text-[#7f7f7f]">
+          <ul className="flex flex-col h-full text-center gap-3 md:gap-5 px-6 sm:px-8 text-lg text-[#7f7f7f] ">
             {routes.map((route, index) => (
-              <li className="pb-3 md:pb-5 relative after:absolute after:-left-[10%] after:bottom-0 after:bg-gradient-to-r after:from-[#A38243] after:to-[#D2C29E] after:w-[120%] after:h-[.0625rem] " key={index}>
+              <li className="pb-3 md:pb-5 relative after:absolute after:-left-[10%] after:bottom-0 hover:text-[#bea473] after:bg-gradient-to-r after:from-[#A38243] after:to-[#D2C29E] after:w-[120%] after:h-[.0625rem] " key={index}>
                 <Link href={route.href}>{route.label}</Link>
               </li>
             ))}
@@ -178,6 +183,10 @@ const HeaderNav = () => {
             </li>
           </ul>
         </motion.nav>
+        <SideFilterMenu
+          isMenuOpen={isFilterOpen}
+          setIsMenuOpen={setIsFilterOpen}
+        />
       </div>
     </header>
   )

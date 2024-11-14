@@ -11,7 +11,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        grayAccent: '#666'
+        grayAccent: '#666',
+        darkBrown: "#AC894C",
+        lightBrown: "#D4C09B"
       },
       width: {
         'container': 'min(95%,90rem)'
