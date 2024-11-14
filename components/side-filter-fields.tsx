@@ -4,28 +4,15 @@ import Image from "next/image"
 import GoldenArrowDown from "@/public/header/golden-arrow-down.svg"
 import GoldenPlus from "@/public/header/golden-plus.svg"
 import GoldenMinus from "@/public/header/golden-minus.svg"
-
-type FilterStates = {
-  cities: any[];
-  districts: any[];
-  params: {
-    city: string;
-    district: string;
-    type: string;
-    minValue: number | "";
-    maxValue: number | "";
-    condominium: string;
-    dormitory: string;
-    vacancies: string;
-  }
-}
+import { FilterStates } from "./side-filter-menu"
 
 type SideFiltersProps = {
-  searchState: FilterStates;
-  setSearchState: React.Dispatch<React.SetStateAction<FilterStates>>
+  filterState: FilterStates;
+  setFilterState: React.Dispatch<React.SetStateAction<FilterStates>>
 }
 
-const SideFilterFields = () => {
+const SideFilterFields = ({ filterState, setFilterState }: SideFiltersProps) => {
+
   return (
     <div className="my-[3.125rem]">
       <p className="font-newsReader text-grayAccent font-light text-center">BUSQUE O IMÓVEL QUE DESEJA</p>
@@ -55,49 +42,147 @@ const SideFilterFields = () => {
             alt="Seta de expansão"
           />
         </button>
+
+        {/* dormitory */}
+
         <div className="flex gap-2">
           <div className="bg-white flex-1 rounded-[.625rem] p-[.4375rem] px-[.9375rem]">
-            <span className="flex justify-between flex-1">DORMITÓRIOS <span>0</span></span>
+            <span className="flex justify-between flex-1">DORMITÓRIOS <span>{filterState.params.dormitory}</span></span>
           </div>
-          <button className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
-          <button className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              dormitory: Number(prev.params.dormitory) > 0 ? Number(prev.params.dormitory) - 1 : 0
+            }
+          }))} className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              dormitory: Number(prev.params.dormitory) + 1
+            }
+          }))} className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
         </div>
+
+        {/* suite */}
+
         <div className="flex gap-2">
           <div className="bg-white flex-1 rounded-[.625rem] p-[.4375rem] px-[.9375rem]">
-            <span className="flex justify-between flex-1">SUÍTES <span>0</span></span>
+            <span className="flex justify-between flex-1">SUÍTES <span>{filterState.params.suite}</span></span>
           </div>
-          <button className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
-          <button className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              suite: Number(prev.params.suite) > 0 ? Number(prev.params.suite) - 1 : 0
+            }
+          }))} className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              suite: Number(prev.params.suite) + 1
+            }
+          }))} className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
         </div>
+
+        {/* vacancies */}
+
         <div className="flex gap-2">
           <div className="bg-white flex-1 rounded-[.625rem] p-[.4375rem] px-[.9375rem]">
-            <span className="flex justify-between flex-1">VAGAS DE GARAGEM <span>0</span></span>
+            <span className="flex justify-between flex-1">VAGAS DE GARAGEM <span>{filterState.params.vacancies}</span></span>
           </div>
-          <button className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
-          <button className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              vacancies: Number(prev.params.vacancies) > 0 ? Number(prev.params.vacancies) - 1 : 0
+            }
+          }))} className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              vacancies: Number(prev.params.vacancies) + 1
+            }
+          }))} className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
         </div>
+
+        {/* bathroom */}
+
         <div className="flex gap-2">
           <div className="bg-white flex-1 rounded-[.625rem] p-[.4375rem] px-[.9375rem]">
-            <span className="flex justify-between flex-1">BANHEIROS <span>0</span></span>
+            <span className="flex justify-between flex-1">BANHEIROS <span>{filterState.params.bathroom}</span></span>
           </div>
-          <button className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
-          <button className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              bathroom: Number(prev.params.bathroom) > 0 ? Number(prev.params.bathroom) - 1 : 0
+            }
+          }))} className="p-3"><Image src={GoldenMinus} alt="Diminuir" /></button>
+          <button onClick={() => setFilterState(prev => ({
+            ...prev,
+            params: {
+              ...prev.params,
+              bathroom: Number(prev.params.bathroom) + 1
+            }
+          }))} className="p-3"><Image src={GoldenPlus} alt="Adicionar" /></button>
         </div>
+
+        {/* min value */}
+
         <label className="flex justify-between">
           PREÇO MÍNIMO
-          <input type="text" className="max-w-[8.125rem] outline-0" />
+          <input
+            value={filterState.params.minValue === 0 ? "" : filterState.params.minValue}
+            onChange={(e) =>
+              setFilterState(prev => ({
+                ...prev,
+                params: {
+                  ...prev.params,
+                  minValue: e.target.value === "" ? "" : Number(e.target.value)
+                }
+              }))
+            }
+            type="number"
+            className="max-w-[6.7rem] outline-0"
+            min={0}
+          />
         </label>
+
+        {/* max value */}
+
         <label className="flex justify-between">
           PREÇO MÁXIMO
-          <input type="text" className="max-w-[8.125rem] outline-0" />
+          <input
+            value={filterState.params.maxValue === 0 ? "" : filterState.params.maxValue}
+            onChange={(e) =>
+              setFilterState(prev => ({
+                ...prev,
+                params: {
+                  ...prev.params,
+                  maxValue: e.target.value === "" ? "" : Number(e.target.value)
+                }
+              }))
+            }
+            type="number"
+            className="max-w-[6.7rem] outline-0"
+            min={0}
+          />
         </label>
+
         <label className="flex justify-between">
           ÁREA PRIVATIVA MÍNIMA
-          <input type="text" className="max-w-[8.125rem] outline-0" />
+          <input type="text" className="max-w-[6.7rem] outline-0" />
         </label>
         <label className="flex justify-between">
           ÁREA PRIVATIVA MÁXIMA
-          <input type="text" className="max-w-[8.125rem] outline-0" />
+          <input
+            type="text"
+            className="max-w-[6.7rem] outline-0"
+          />
         </label>
       </div>
     </div>

@@ -21,8 +21,6 @@ const getData = async (filtros: any) => {
     empresa_id: empresa_id
   })
 
-  console.log(params_estates)
-
   const params = new URLSearchParams({
     empresa_id
   })
@@ -77,24 +75,47 @@ type SideFilterMenuProps = {
   setIsMenuOpen: (value: SetStateAction<boolean>) => void;
 }
 
+export type FilterStates = {
+  cities: any[];
+  districts: any[];
+  params: {
+    city: string;
+    district: string;
+    type: string;
+    minValue: number | "";
+    maxValue: number | "";
+    condominium: string;
+    dormitory: number | "";
+    sale: string;
+    rent: string;
+    bathroom: number | "";
+    suite: number | "";
+    vacancies: number | "";
+  }
+}
+
 const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
   const searchParams = useSearchParams()
   const router = useRouter()
 
-  /* api */
-  const [cities, setCities] = useState<any[]>()
-  const [districts, setDistricts] = useState<any[]>()
-
-  /* params */
-  const [paramsCity, setParamsCity] = useState<string>(searchParams.get("cidade") ?? "")
-  const [paramsDistrict, setParamsDistrict] = useState<string>(searchParams.get("bairro") ?? "")
-  const [paramsType, setParamsType] = useState<string>(searchParams.get("tipo") ?? "")
-  const [paramsMinValue, setParamsMinValue] = useState<number | "">(Number(searchParams.get("valorMin")) ?? "")
-  const [paramsMaxValue, setParamsMaxValue] = useState<number | "">(Number(searchParams.get("valorMax")) ?? "")
-
-  const [paramsCondominium, setParamsCondominium] = useState<string>("")
-  const [paramsDormitory, setParamsDormitory] = useState<string>("")
-  const [paramsVacancies, setParamsVacancies] = useState<string>("")
+  const [searchState, setSearchState] = useState<FilterStates>({
+    cities: [],
+    districts: [],
+    params: {
+      type: searchParams.get("tipo") ?? "",
+      city: searchParams.get("cidade") ?? "",
+      district: searchParams.get("bairro") ?? "",
+      minValue: Number(searchParams.get("valorMin")) ?? "",
+      maxValue: Number(searchParams.get("valorMax")) ?? "",
+      condominium: "",
+      dormitory: Number(searchParams.get("dormitórios")) ?? "",
+      sale: searchParams.get("venda") ?? "",
+      rent: searchParams.get("locação") ?? "",
+      bathroom: Number(searchParams.get("banheiros")) ?? "",
+      suite: Number(searchParams.get("suíte")) ?? "",
+      vacancies: Number(searchParams.get("vagas")) ?? "",
+    }
+  })
 
   const createQueryString = useCallback((name: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString())
@@ -106,7 +127,10 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
   useEffect(() => {
     const getCities = async () => {
       const { cities } = await getData(searchParams)
-      setCities(cities)
+      setSearchState(prev => ({
+        ...prev,
+        cities
+      }))
     }
     getCities()
   }, [])
@@ -114,7 +138,10 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
   useEffect(() => {
     const getDistricts = async () => {
       const { districts } = await getData(searchParams)
-      setDistricts(districts)
+      setSearchState(prev => ({
+        ...prev,
+        districts
+      }))
     }
     getDistricts()
   }, [])
@@ -175,7 +202,10 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
             placeholder="Rua, bairro, edifício ou código do imóvel"
           />
         </div>
-        <SideFilterFields />
+        <SideFilterFields
+          filterState={searchState}
+          setFilterState={setSearchState}
+        />
         <button className="block mx-auto bg-[#95a3ab] text-white px-12 py-3 rounded-[100vmax]">BUSCAR IMÓVEL</button>
       </form>
     </motion.div>
