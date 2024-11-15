@@ -7,6 +7,7 @@ import { SetStateAction, useCallback, useEffect, useRef, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import processFilters from "@/utils/process-backend-filters"
 import SideFilterFields from "./side-filter-fields"
+import slugify from "slugify"
 
 const PAGE_SIZE = 12
 
@@ -25,7 +26,9 @@ const getData = async (filtros: any) => {
     empresa_id
   })
 
-  const districtsResponse = await fetch(`${uri}/imoveis/bairros-por-cidade?${params_estates}`)
+  const districtsResponse = await fetch(`${uri}/imoveis/bairros-por-cidade?${params_estates}`, {
+    next: { tags: ["imoveis-info"], revalidate: 3600 }
+  })
 
   const citiesParams = new URLSearchParams({
     empresa_id,
@@ -149,7 +152,57 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
+    const slugifyOptions = {
+      lower: true,
+      strict: true,
+      locale: "pt",
+      remove: /[*+~.()'"!:@]/g
+    }
 
+    const slugifyString = (str: string) => slugify(str, slugifyOptions)
+
+    const urlSegments = []
+
+
+
+    if (searchState.params.type.length !== 0) {
+      urlSegments.push(searchState.params.type.map(typeParams => createQueryString('tipo', slugifyString(typeParams))).join('&'))
+    }
+
+    if (searchState.params.city.length !== 0) {
+      urlSegments.push(searchState.params.city.map(cityParams => createQueryString('cidade', slugifyString(cityParams))).join('&'))
+    }
+
+    if (searchState.params.district.length !== 0) {
+      urlSegments.push(searchState.params.district.map(districtParams => createQueryString('bairro', slugifyString(districtParams))).join('&'))
+    }
+
+    if (searchState.params.dormitory) {
+      urlSegments.push(createQueryString('dormitorios', slugifyString(String(searchState.params.dormitory))))
+    }
+
+    if (searchState.params.suite) {
+      urlSegments.push(createQueryString('suite', slugifyString(String(searchState.params.suite))))
+    }
+
+    if (searchState.params.vacancies) {
+      urlSegments.push(createQueryString('vagas', slugifyString(String(searchState.params.vacancies))))
+    }
+
+    if (searchState.params.bathroom) {
+      urlSegments.push(createQueryString('banheiros', slugifyString(String(searchState.params.bathroom))))
+    }
+
+    if (searchState.params.minValue) {
+      urlSegments.push(createQueryString('preco-min', slugifyString(String(searchState.params.minValue))))
+    }
+    if (searchState.params.maxValue) {
+      urlSegments.push(createQueryString('preco-max', slugifyString(String(searchState.params.maxValue))))
+    }
+
+    const url = `/imoveis?${urlSegments.join("&")}`
+
+    router.push(url)
   }
 
   const menuRef = useRef<HTMLDivElement | null>(null)
