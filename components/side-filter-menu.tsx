@@ -79,9 +79,9 @@ export type FilterStates = {
   cities: any[];
   districts: any[];
   params: {
-    city: string;
-    district: string;
-    type: string;
+    city: string[];
+    district: string[];
+    type: string[];
     minValue: number | "";
     maxValue: number | "";
     condominium: string;
@@ -102,9 +102,9 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
     cities: [],
     districts: [],
     params: {
-      type: searchParams.get("tipo") ?? "",
-      city: searchParams.get("cidade") ?? "",
-      district: searchParams.get("bairro") ?? "",
+      type: searchParams.get("tipo")?.split(',') ?? [],
+      city: searchParams.get("cidade")?.split(',') ?? [],
+      district: searchParams.get("bairro")?.split(',') ?? [],
       minValue: Number(searchParams.get("valorMin")) ?? "",
       maxValue: Number(searchParams.get("valorMax")) ?? "",
       condominium: "",
