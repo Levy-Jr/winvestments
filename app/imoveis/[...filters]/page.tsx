@@ -141,13 +141,14 @@ const Imoveis = async ({
 
   const totalPages = Math.ceil(imoveis.total / PAGE_SIZE)
   return (
-    <main className="w-container text-grayAccent mx-auto">
+    <main className="w-container text-grayAccent mx-auto mb-20">
       <div
-        className="absolute bg-fixed -z-10 inset-0"
+        className="fixed bg-fixed -z-10 inset-0"
         style={{
           backgroundImage: `url('/marble-bg.webp')`
-        }} />
-      <h1 className="pt-20 text-4xl text-center font-newsReader">{imoveis.total} IMÓVEIS À VENDA</h1>
+        }}
+      />
+      <h1 className="pt-20 mb-10 text-4xl text-center font-newsReader">{imoveis.total} IMÓVEIS À VENDA</h1>
       <EstatesControls />
       <ul className="grid lg:grid-cols-2 gap-10">
         {imoveis.nodes.map((imovel, index) => (

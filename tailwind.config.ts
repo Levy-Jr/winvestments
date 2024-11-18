@@ -19,7 +19,8 @@ export default {
         'container': 'min(95%,90rem)'
       },
       fontFamily: {
-        newsReader: ['var(--font-news-reader)']
+        newsReader: ['var(--font-news-reader)'],
+        roboto: ['var(--font-roboto)']
       }
     },
   },

@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Newsreader } from "next/font/google"
+import { Newsreader, Roboto } from "next/font/google"
 import "./globals.css";
 import HeaderNav from "@/components/header";
 import Footer from "@/components/footer";
 import WppBtn from "@/components/wpp-btn";
+
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto'
+})
 
 const newsReader = Newsreader({
   weight: ['300', '400'],
@@ -25,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${newsReader.variable} antialiased`}
+        className={`${newsReader.variable} ${roboto.variable} font-roboto antialiased`}
       >
         <HeaderNav />
         <WppBtn />
