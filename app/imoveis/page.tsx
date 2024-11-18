@@ -1,7 +1,15 @@
-const Imoveis = () => {
+import Imoveis from "./[...filters]/page";
+
+const ListingEstatePage = async ({
+  params,
+  searchParams
+}: {
+  params: { filters: string[] };
+  searchParams: { [key: string]: string | string[] | undefined }
+}) => {
   return (
-    <div></div>
+    <Imoveis params={params} searchParams={searchParams} />
   )
 }
 
-export default Imoveis
+export default ListingEstatePage

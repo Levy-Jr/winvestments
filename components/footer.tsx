@@ -49,7 +49,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  className="inline-flex flex-col lg:flex-row items-center gap-1"
+                  className="inline-flex flex-col lg:flex-row items-center gap-2"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="mailto:contato@winvestments.com.br"

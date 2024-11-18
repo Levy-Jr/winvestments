@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion"
 import CloseIcon from "@/public/header/close-icon.svg"
 import Image from "next/image"
-import { SetStateAction, useCallback, useEffect, useRef, useState } from "react"
+import { SetStateAction, useEffect, useRef, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import processFilters from "@/utils/process-backend-filters"
 import SideFilterFields from "./side-filter-fields"
@@ -120,13 +120,6 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
     }
   })
 
-  const createQueryString = useCallback((name: string, value: string) => {
-    const params = new URLSearchParams(searchParams.toString())
-    params.set(name, value)
-
-    return params.toString()
-  }, [searchParams])
-
   useEffect(() => {
     const getCities = async () => {
       const { cities } = await getData(searchParams)
@@ -154,7 +147,6 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
 
     const slugifyOptions = {
       lower: true,
-      strict: true,
       locale: "pt",
       remove: /[*+~.()'"!:@]/g
     }
@@ -163,44 +155,42 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
 
     const urlSegments = []
 
-
-
     if (searchState.params.type.length !== 0) {
-      urlSegments.push(searchState.params.type.map(typeParams => createQueryString('tipo', slugifyString(typeParams))).join('&'))
+      urlSegments.push(`tipo-${slugifyString(searchState.params.type.join(','))}`)
     }
 
     if (searchState.params.city.length !== 0) {
-      urlSegments.push(searchState.params.city.map(cityParams => createQueryString('cidade', slugifyString(cityParams))).join('&'))
+      urlSegments.push(`cidade-${slugifyString(searchState.params.city.join(','))}`)
     }
 
     if (searchState.params.district.length !== 0) {
-      urlSegments.push(searchState.params.district.map(districtParams => createQueryString('bairro', slugifyString(districtParams))).join('&'))
+      urlSegments.push(`bairro-${slugifyString(searchState.params.district.join(','))}`)
     }
 
     if (searchState.params.dormitory) {
-      urlSegments.push(createQueryString('dormitorios', slugifyString(String(searchState.params.dormitory))))
+      urlSegments.push(`dormitorios-${slugifyString(String(searchState.params.dormitory))}`)
     }
 
     if (searchState.params.suite) {
-      urlSegments.push(createQueryString('suite', slugifyString(String(searchState.params.suite))))
+      urlSegments.push(`suite-${slugifyString(String(searchState.params.suite))}`)
     }
 
     if (searchState.params.vacancies) {
-      urlSegments.push(createQueryString('vagas', slugifyString(String(searchState.params.vacancies))))
+      urlSegments.push(`vagas-${slugifyString(String(searchState.params.vacancies))}`)
     }
 
     if (searchState.params.bathroom) {
-      urlSegments.push(createQueryString('banheiros', slugifyString(String(searchState.params.bathroom))))
+      urlSegments.push(`banheiros-${slugifyString(String(searchState.params.bathroom))}`)
     }
 
     if (searchState.params.minValue) {
-      urlSegments.push(createQueryString('preco-min', slugifyString(String(searchState.params.minValue))))
+      urlSegments.push(`preco-min-${slugifyString(String(searchState.params.minValue))}`)
     }
     if (searchState.params.maxValue) {
-      urlSegments.push(createQueryString('preco-max', slugifyString(String(searchState.params.maxValue))))
+      urlSegments.push(`preco-max-${slugifyString(String(searchState.params.maxValue))}`)
     }
 
-    const url = `/imoveis?${urlSegments.join("&")}`
+    const url = `/imoveis/${urlSegments.join("/")}`
 
     router.push(url)
   }
@@ -220,8 +210,6 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
       document.removeEventListener('mousedown', handler)
     }
   })
-
-  /* TODO: CREATE ALL THE IMPUTS AND CONNECT THEM WITH THE USESTATES TO MAKE A PUSH ROUTER WITH QUERYSTRINGS */
 
   return (
     <motion.div
