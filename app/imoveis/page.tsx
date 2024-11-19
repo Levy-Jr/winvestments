@@ -4,8 +4,8 @@ const ListingEstatePage = async ({
   params,
   searchParams
 }: {
-  params: { filters: string[] };
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ filters: string[] }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) => {
   return (
     <Imoveis params={params} searchParams={searchParams} />

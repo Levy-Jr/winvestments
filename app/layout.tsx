@@ -4,6 +4,7 @@ import "./globals.css";
 import HeaderNav from "@/components/header";
 import Footer from "@/components/footer";
 import WppBtn from "@/components/wpp-btn";
+import { Suspense } from "react";
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -33,7 +34,9 @@ export default function RootLayout({
       <body
         className={`${newsReader.variable} ${roboto.variable} font-roboto antialiased`}
       >
-        <HeaderNav />
+        <Suspense>
+          <HeaderNav />
+        </Suspense>
         <WppBtn />
         {children}
         <Footer />

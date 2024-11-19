@@ -32,19 +32,16 @@ const revertSlug = (slug: string, originalList: any[], key: string) => {
     : decodeURIComponent(slug.replace(/-/g, " "));
 };
 
-const Imoveis = async ({
-  params,
-  searchParams
-}: {
-  params: { filters: string[] },
-  searchParams: { [key: string]: string | string[] | undefined }
+const Imoveis = async (props: {
+  params: Promise<{ filters: string[] }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) => {
-  const { filters } = await params
-  const searchParamsRes = await searchParams
+  const { filters } = await props.params
+  const searchParamsRes = await props.searchParams
 
   const newFilters: any = {};
 
-  (filters || []).forEach((segment: string) => {
+  (await filters || []).forEach((segment: string) => {
     if (segment.startsWith("transacao-")) {
       const transacaoSlug = segment.replace("transacao-", "");
       newFilters.transacao = decodeURIComponent(transacaoSlug.replace(/-/g, " "));
@@ -140,6 +137,7 @@ const Imoveis = async ({
   }
 
   const totalPages = Math.ceil(imoveis.total / PAGE_SIZE)
+
   return (
     <main className="w-lg-container text-grayAccent mx-auto mb-20">
       <div
