@@ -16,7 +16,8 @@ export default {
         lightBrown: "#D4C09B"
       },
       width: {
-        'container': 'min(95%,90rem)'
+        'container': 'min(95%,90rem)',
+        'lg-container': 'min(95%,105rem)'
       },
       fontFamily: {
         newsReader: ['var(--font-news-reader)'],

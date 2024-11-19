@@ -19,7 +19,7 @@ const FeaturesSection = () => {
   ]
 
   return (
-    <section className="w-container mx-auto mb-12">
+    <section className="w-lg-container mx-auto mb-12">
       <div className="flex items-center gap-4 before:h-[.125rem] before:w-full before:bg-[#b1bac1] after:h-[.125rem] after:w-full after:bg-[#b1bac1]">
         <Image
           src={LogoDivisor}

@@ -15,7 +15,9 @@ export default function Home() {
           backgroundImage: "url('/marble-bg.webp')"
         }}
       >
-        <WTalksSection />
+        <div className="w-lg-container mx-auto">
+          <WTalksSection />
+        </div>
         <PraySection />
       </div>
       <WhoAreWeSection />

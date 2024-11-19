@@ -19,43 +19,62 @@ const Estate = ({ imovel }: { imovel: Imóvel }) => {
       <EstateImgCarousel
         fotos={imovel.fotos}
       />
-      <div className="">
-        <ul className="relative font-light flex justify-around mt-5 before:absolute before:bottom-0 before:left-0 before:right-0 before:h-[.0625rem] before:bg-gradient-to-r before:from-[#A38243] before:to-[#D2C29E] *:grid *:gap-1 *:place-items-center">
-          <li>
-            <Image
-              src={SuiteIcon}
-              alt="Ícone de suite"
-            />
-            <b>{ }</b>
-            SUÍTES
-          </li>
-          <li>
-            <Image
-              src={DormitoryIcon}
-              alt="Ícone de dormitório"
-            />
-            <b>{ }</b>
-            QUARTOS
-          </li>
-          <li>
-            <Image
-              src={VacanciesIcon}
-              alt="Ícone de vagas"
-            />
-            <b>{ }</b>
-            VAGAS
-          </li>
-          <li>
-            <Image
-              src={PrivateIcon}
-              alt="Ícone de área privativa"
-            />
-            <b>{ }</b>
-            PRIVATIVOS
-          </li>
+      <div className="py-4">
+        <ul className="relative [&_span]:font-bold [&_span]:text-[1.375rem] font-light flex justify-around items-center mt-5 pb-4 before:absolute before:bottom-0 before:left-0 before:right-0 before:h-[.0625rem] before:bg-gradient-to-r before:from-[#A38243] before:to-[#D2C29E] *:grid *:place-items-center">
+          {imovel.suítes ?
+            (<li>
+              <Image
+                className="max-w-[3.4375rem] max-h-10"
+                src={SuiteIcon}
+                alt="Ícone de suite"
+              />
+              <span>{imovel.suítes}</span>
+              SUÍTES
+            </li>) : null
+          }
+          {imovel.dormitórios &&
+            !imovel.não_mostrar_dormítorios ? (
+            <li>
+              <Image
+                className="max-w-[4.6875rem] max-h-10"
+                src={DormitoryIcon}
+                alt="Ícone de dormitório"
+              />
+              <span>{imovel.dormitórios}</span>
+              QUARTO{`${Number(imovel.dormitórios || 0) > 1 ? "S" : ""}`}
+            </li>
+          ) : null}
+          {imovel.vagas ? (
+            <li>
+              <Image
+                className="max-w-[4.6875rem] max-h-10"
+                src={VacanciesIcon}
+                alt="Ícone de vagas"
+              />
+              <span>{imovel.vagas}</span>
+              VAGAS
+            </li>
+          ) : null}
+          {imovel.area_privativa ? (
+            <li>
+              <Image
+                className="max-w-[4.0625rem] max-h-10"
+                src={PrivateIcon}
+                alt="Ícone de área privativa"
+              />
+              <span>{imovel.area_privativa} M²</span>
+              PRIVATIVOS
+            </li>
+          ) : null}
         </ul>
-        <div className="relative flex p-[.9375rem] items-center justify-between ">
-          <p>Valor <span className="font-semibold text-2xl">{formatCurrency(imovel.preço_venda)}</span></p>
+        <div className="relative flex pt-[.9375rem] px-[.9375rem] items-center justify-between ">
+          {imovel.preço_venda &&
+            (imovel.venda_exibir_valor_no_site === undefined || imovel.venda_exibir_valor_no_site === true)
+            ?
+            (<p>Valor <span className="font-semibold text-2xl">{formatCurrency(imovel.preço_venda)}</span></p>)
+            :
+            (<p className="text-lg">Consulte-nos</p>)}
+
           <Link className="inline-block rounded-[100vmax] py-[.625rem] text-center w-[min(100%,15.625rem)] bg-[#95a3ab] hover:bg-[#BEA473] text-white" href="">VEJA MAIS</Link>
         </div>
       </div>

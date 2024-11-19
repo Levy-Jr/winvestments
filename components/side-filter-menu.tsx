@@ -94,6 +94,8 @@ export type FilterStates = {
     bathroom: number | "";
     suite: number | "";
     vacancies: number | "";
+    minPrivateArea: number | "";
+    maxPrivateArea: number | "";
   }
 }
 
@@ -117,6 +119,8 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
       bathroom: Number(searchParams.get("banheiros")) ?? "",
       suite: Number(searchParams.get("suíte")) ?? "",
       vacancies: Number(searchParams.get("vagas")) ?? "",
+      minPrivateArea: Number(searchParams.get("area_min")) ?? "",
+      maxPrivateArea: Number(searchParams.get("area_max")) ?? "",
     }
   })
 
@@ -189,6 +193,12 @@ const SideFilterMenu = ({ isMenuOpen, setIsMenuOpen }: SideFilterMenuProps) => {
     if (searchState.params.maxValue) {
       urlSegments.push(`preco-max-${slugifyString(String(searchState.params.maxValue))}`)
     }
+    /*     if (searchState.params.minPrivateArea) {
+          urlSegments.push(`min-area-${slugifyString(String(searchState.params.minPrivateArea))}`)
+        }
+        if (searchState.params.maxPrivateArea) {
+          urlSegments.push(`max-area-${slugifyString(String(searchState.params.maxPrivateArea))}`)
+        } */
 
     const url = `/imoveis/${urlSegments.join("/")}`
 

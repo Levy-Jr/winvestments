@@ -298,13 +298,38 @@ const SideFilterFields = ({ filterState, setFilterState }: SideFiltersProps) => 
 
         <label className="flex justify-between">
           ÁREA PRIVATIVA MÍNIMA
-          <input type="text" className="max-w-[6.7rem] outline-0" />
+          <input
+            value={filterState.params.minPrivateArea === 0 ? "" : filterState.params.minPrivateArea}
+            onChange={e =>
+              setFilterState(prev => ({
+                ...prev,
+                params: {
+                  ...prev.params,
+                  minPrivateArea: e.target.value === "" ? "" : Number(e.target.value)
+                }
+              }))
+            }
+            className="max-w-[6.7rem] outline-0"
+            type="number"
+            min={0}
+          />
         </label>
         <label className="flex justify-between">
           ÁREA PRIVATIVA MÁXIMA
           <input
+            value={filterState.params.maxPrivateArea === 0 ? "" : filterState.params.maxPrivateArea}
+            onChange={e =>
+              setFilterState(prev => ({
+                ...prev,
+                params: {
+                  ...prev.params,
+                  maxPrivateArea: e.target.value === "" ? "" : Number(e.target.value)
+                }
+              }))
+            }
             type="text"
             className="max-w-[6.7rem] outline-0"
+            min={0}
           />
         </label>
       </div>

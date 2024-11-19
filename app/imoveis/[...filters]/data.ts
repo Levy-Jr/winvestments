@@ -149,12 +149,21 @@ async function getData(filtros: any): Promise<{
   }
 
   if (rest.preco_min) {
+    console.log('preço')
     backendFilters['imovel.preco_min'] = rest.preco_min;
   }
 
   if (rest.preco_max) {
     backendFilters['imovel.preco_max'] = rest.preco_max;
   }
+  /* 
+    if (rest.area_min) {
+      console.log("minimo area privada")
+      backendFilters['min_private_area'] = rest.area_min
+    }
+    if (rest.area_min) {
+      backendFilters['max_private_area'] = rest.area_max
+    } */
 
   if (rest.codigo) {
     backendFilters.código = rest.codigo;

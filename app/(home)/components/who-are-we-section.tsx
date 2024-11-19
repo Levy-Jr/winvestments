@@ -73,7 +73,7 @@ const WhoAreWeSection = () => {
         backgroundImage: "url('/whoAreWe/who-are-we-bg.webp')"
       }}
     >
-      <div className="w-container mx-auto">
+      <div className="w-lg-container mx-auto">
         <div className="mx-auto max-w-[30rem] md:max-w-none md:w-[77%] lg:w-[70%] md:mx-0 md:ml-auto text-center md:text-start">
           <div className="grid place-items-center gap-8 mb-12">
             <h2 className="font-newsReader text-4xl">QUEM SOMOS</h2>

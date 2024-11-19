@@ -17,7 +17,7 @@ import PromentorLogo from "@/public/footer/promentor-logo.svg"
 const Footer = () => {
   return (
     <footer className="bg-[#f5f5f5] relative before:absolute before:top-0 before:left-0 before:block before:w-full before:h-[.125rem] before:bg-gradient-to-r before:from-[#A38243] before:to-[#D2C29E] text-grayAccent pt-[4.0625rem]">
-      <div className="w-container mx-auto">
+      <div className="w-lg-container mx-auto">
         <div className="flex flex-col lg:flex-row lg:justify-between lg:gap-3 mb-[3.4375rem]">
           <div>
             <Image
@@ -64,7 +64,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <p className="text-[.75rem] mb-2 lg:mb-0 text-center lg:text-start">REDES SOCIAIS</p>
+                <p className="text-[.75rem] mb-2 text-center lg:text-start">REDES SOCIAIS</p>
                 <ul className="flex items-center gap-9">
                   <li>
                     <a
