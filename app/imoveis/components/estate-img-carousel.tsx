@@ -19,7 +19,7 @@ const EstateImgCarousel = ({ fotos }: { fotos: Foto[] }) => {
             if (index + 1 <= 5) {
               return <li
                 key={index}
-                className="flex-[0_0_100%] max-h-[500px] "
+                className="flex-[0_0_100%] max-h-[500px]"
               >
                 <Image
                   className="object-cover max-w-full max-h-full min-h-[31.25rem]"
