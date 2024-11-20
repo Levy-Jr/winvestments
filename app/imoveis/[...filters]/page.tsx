@@ -142,7 +142,7 @@ const Imoveis = async (props: {
   return (
     <main className="w-lg-container text-grayAccent mx-auto mb-20">
       <div
-        className="fixed bg-cover bg-fixed -z-10 inset-0"
+        className="fixed bg-[top_center] bg-fixed -z-10 inset-0"
         style={{
           backgroundImage: `url('/marble-bg.webp')`
         }}
