@@ -146,10 +146,13 @@ const HeaderNav = () => {
               alt="Fechar"
             />
           </button>
-          <ul className="flex flex-col h-full text-center gap-3 md:gap-5 px-6 sm:px-8 text-lg text-[#7f7f7f] ">
+          <ul className="flex flex-col h-full text-center gap-3 md:gap-5 px-6 sm:px-8 text-lg text-[#7f7f7f]">
             {routes.map((route, index) => (
-              <li className="pb-3 md:pb-5 relative after:absolute after:-left-[10%] after:bottom-0 hover:text-[#bea473] after:bg-gradient-to-r after:from-[#A38243] after:to-[#D2C29E] after:w-[120%] after:h-[.0625rem] " key={index}>
-                <Link href={route.href}>{route.label}</Link>
+              <li
+                className="pb-3 md:pb-5 relative after:absolute after:-left-[10%] after:bottom-0 after:bg-gradient-to-r after:from-[#A38243] after:to-[#D2C29E] after:w-[120%] after:h-[.0625rem]"
+                key={index}
+              >
+                <Link className="hover:text-[#bea473]" href={route.href}>{route.label}</Link>
               </li>
             ))}
           </ul>

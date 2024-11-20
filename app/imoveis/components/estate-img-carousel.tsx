@@ -5,8 +5,9 @@ import { cn } from "@/lib/utils"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
 import { Foto } from "smart-imob-types"
+import { ActiveButtonType } from "./estate-list"
 
-const EstateImgCarousel = ({ fotos }: { fotos: Foto[] }) => {
+const EstateImgCarousel = ({ activeButton, fotos }: { activeButton: ActiveButtonType, fotos: Foto[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({})
 
   const { selectedIndex, scrollSnaps, onSlideButtonClick } = useSlideButton(emblaApi)
@@ -33,14 +34,17 @@ const EstateImgCarousel = ({ fotos }: { fotos: Foto[] }) => {
           })}
         </ul>
       </div>
-      <ul className="flex gap-2 right-1/2 translate-x-1/2 absolute bottom-4">
+      <ul className={cn("flex gap-2 right-1/2 translate-x-1/2 absolute bottom-4", activeButton === 'rows' ? "gap-1 lg:gap-2" : "")}>
         {scrollSnaps.map((_, index) => (
           <li
             key={index}
           >
             <SlideButton
               onClick={() => onSlideButtonClick(index)}
-              className={cn("w-[3.125rem] sm:w-[4.375rem] bg-[#E9E4DE] opacity-70 hover:opacity-90 rounded-[.625rem] h-[.625rem]", index === selectedIndex ? "bg-[#2F4856]" : "")}
+              className={cn("bg-[#E9E4DE] opacity-70 hover:opacity-90 rounded-[.625rem] h-[.625rem]",
+                index === selectedIndex ? "bg-[#2F4856]" : "",
+                activeButton === "rows" ? "w-[3.75rem] lg:w-[4.375rem]" : "w-[3.125rem] sm:w-[4.375rem]"
+              )}
             />
           </li>
         ))}

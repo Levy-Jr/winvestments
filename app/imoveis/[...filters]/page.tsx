@@ -1,8 +1,9 @@
 import slugify from "slugify";
 import { getData } from "./data";
 import { notFound } from "next/navigation";
-import EstatesControls from "../components/estates-controls";
-import Estate from "../components/estate-list";
+import EstateListControl from "../components/estate-list-control";
+import Estate from "../components/estate-list-item";
+import EstateList from "../components/estate-list";
 
 const PAGE_SIZE = 12;
 
@@ -147,15 +148,9 @@ const Imoveis = async (props: {
         }}
       />
       <h1 className="pt-20 mb-10 text-4xl text-center font-newsReader">{imoveis.total} IMÓVEIS À VENDA</h1>
-      <EstatesControls />
-      <ul className="grid w-[min(100%,43.75rem)] mx-auto lg:w-auto lg:mx-0 center lg:grid-cols-2 gap-10">
-        {imoveis.nodes.map((imovel, index) => (
-          <Estate
-            key={index}
-            imovel={imovel}
-          />
-        ))}
-      </ul>
+      <EstateList
+        imoveis={imoveis.nodes}
+      />
     </main>
   )
 }

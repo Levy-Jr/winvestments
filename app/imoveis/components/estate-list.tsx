@@ -1,85 +1,41 @@
 "use client"
 
-import Link from "next/link"
 import { Imóvel } from "smart-imob-types"
-import EstateImgCarousel from "./estate-img-carousel"
-import { formatCurrency } from "@/utils/formatters"
-import Image from "next/image"
+import EstateListControl from "./estate-list-control"
+import Estate from "./estate-list-item"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
 
-import SuiteIcon from "@/public/estates/suite-icon.svg"
-import DormitoryIcon from "@/public/estates/dormitory-icon.svg"
-import VacanciesIcon from "@/public/estates/vacancies-icon.svg"
-import PrivateIcon from "@/public/estates/private-area-icon.svg"
+export type ActiveButtonType = "grid" | "rows" | "map";
 
-const Estate = ({ imovel }: { imovel: Imóvel }) => {
+const EstateList = ({ imoveis }: { imoveis: Imóvel[] }) => {
+  const [activeOrderButton, setActiveOrderButton] = useState(false)
+  const [activeButton, setActiveButton] = useState<ActiveButtonType>("grid")
+
+  const handleButtonClick = (button: ActiveButtonType) => setActiveButton(activeButton === button ? "grid" : button)
+  const orderBtnToggle = () => setActiveOrderButton(!activeOrderButton)
+
   return (
-    <li className="bg-white mt-5 relative rounded-[0.4375rem] overflow-hidden">
-      <p className="text-[1.375rem] font-light absolute z-10 bg-[#000000b3] text-white top-[.625rem] uppercase rounded-[100vmax] py-1 px-8 left-[.625rem]">{imovel.tipo}</p>
-      <p className="font-light absolute z-10 bg-[#000000b3] text-white top-[4rem] uppercase rounded-[100vmax] py-2 px-8 left-[.625rem]">{imovel.bairro}/{imovel.cidade.nome}</p>
-      <EstateImgCarousel
-        fotos={imovel.fotos}
+    <>
+      <EstateListControl
+        activeButton={activeButton}
+        activeOrderButton={activeOrderButton}
+        handleButtonClick={handleButtonClick}
+        orderBtnToggle={orderBtnToggle}
       />
-      <div className="py-4">
-        <ul className="relative [&_span]:font-bold [&_span]:text-[1.375rem] font-light flex justify-around items-center mt-5 pb-4 before:absolute before:bottom-0 before:left-0 before:right-0 before:h-[.0625rem] before:bg-gradient-to-r before:from-[#A38243] before:to-[#D2C29E] *:grid *:place-items-center">
-          {imovel.suítes ?
-            (<li>
-              <Image
-                className="max-w-[3.4375rem] max-h-10"
-                src={SuiteIcon}
-                alt="Ícone de suite"
-              />
-              <span>{imovel.suítes}</span>
-              SUÍTES
-            </li>) : null
-          }
-          {imovel.dormitórios &&
-            !imovel.não_mostrar_dormítorios ? (
-            <li>
-              <Image
-                className="max-w-[4.6875rem] max-h-10"
-                src={DormitoryIcon}
-                alt="Ícone de dormitório"
-              />
-              <span>{imovel.dormitórios}</span>
-              QUARTO{`${Number(imovel.dormitórios || 0) > 1 ? "S" : ""}`}
-            </li>
-          ) : null}
-          {imovel.vagas ? (
-            <li>
-              <Image
-                className="max-w-[4.6875rem] max-h-10"
-                src={VacanciesIcon}
-                alt="Ícone de vagas"
-              />
-              <span>{imovel.vagas}</span>
-              VAGAS
-            </li>
-          ) : null}
-          {imovel.area_privativa ? (
-            <li>
-              <Image
-                className="max-w-[4.0625rem] max-h-10"
-                src={PrivateIcon}
-                alt="Ícone de área privativa"
-              />
-              <span>{imovel.area_privativa} M²</span>
-              PRIVATIVOS
-            </li>
-          ) : null}
-        </ul>
-        <div className="relative flex pt-[.9375rem] px-[.9375rem] items-center justify-between ">
-          {imovel.preço_venda &&
-            (imovel.venda_exibir_valor_no_site === undefined || imovel.venda_exibir_valor_no_site === true)
-            ?
-            (<p>Valor <span className="font-semibold text-2xl">{formatCurrency(imovel.preço_venda)}</span></p>)
-            :
-            (<p className="text-lg">Consulte-nos</p>)}
-
-          <Link className="inline-block rounded-[100vmax] py-[.625rem] text-center w-[min(100%,15.625rem)] bg-[#95a3ab] hover:bg-[#BEA473] text-white" href="">VEJA MAIS</Link>
-        </div>
-      </div>
-    </li>
+      <ul className={cn("grid w-[min(100%,43.75rem)] mx-auto lg:w-auto lg:mx-0 center lg:grid-cols-2 gap-10",
+        activeButton === "rows" ? "lg:grid-cols-1 w-auto" : null
+      )}>
+        {imoveis.map((imovel, index) => (
+          <Estate
+            activeButton={activeButton}
+            key={index}
+            imovel={imovel}
+          />
+        ))}
+      </ul>
+    </>
   )
 }
 
-export default Estate
+export default EstateList
