@@ -5,6 +5,7 @@ import HeaderNav from "@/components/header";
 import Footer from "@/components/footer";
 import WppBtn from "@/components/wpp-btn";
 import { Suspense } from "react";
+import { ModalProvider } from "../providers/modal-provider";
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -32,11 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${newsReader.variable} ${roboto.variable} font-roboto antialiased`}
+        className={`${newsReader.variable} ${roboto.variable} font-roboto text-grayAccent antialiased`}
       >
         <Suspense>
           <HeaderNav />
         </Suspense>
+        <ModalProvider />
         <WppBtn />
         {children}
         <Footer />
