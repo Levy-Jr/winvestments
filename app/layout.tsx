@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import WppBtn from "@/components/wpp-btn";
 import { Suspense } from "react";
 import { ModalProvider } from "../providers/modal-provider";
+import { WppModalProvider } from "@/components/wpp-modal";
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -38,8 +39,10 @@ export default function RootLayout({
         <Suspense>
           <HeaderNav />
         </Suspense>
-        <ModalProvider />
-        <WppBtn />
+        <WppModalProvider>
+          <ModalProvider />
+          <WppBtn />
+        </WppModalProvider>
         {children}
         <Footer />
       </body>
