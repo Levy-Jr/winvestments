@@ -5,8 +5,8 @@ import HeaderNav from "@/components/header";
 import Footer from "@/components/footer";
 import WppBtn from "@/components/wpp-btn";
 import { Suspense } from "react";
-import { ModalProvider } from "../providers/modal-provider";
-import { WppModalProvider } from "@/components/wpp-modal";
+import { ModalProvider } from "../components/wpp-modal";
+import { WppModalProvider } from "@/contexts/wpp-modal-context";
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],

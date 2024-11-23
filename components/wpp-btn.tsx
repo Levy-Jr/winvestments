@@ -3,7 +3,7 @@
 import Image from "next/image"
 import WhiteWppIcon from "@/public/white-wpp-btn.svg"
 import { useContext } from "react"
-import { WppModalContext } from "@/components/wpp-modal"
+import { WppModalContext } from "@/contexts/wpp-modal-context"
 
 const WppBtn = () => {
   const wppCtx = useContext(WppModalContext)
