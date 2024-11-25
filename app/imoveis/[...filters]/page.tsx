@@ -1,8 +1,6 @@
 import slugify from "slugify";
 import { getData } from "./data";
 import { notFound } from "next/navigation";
-import EstateListControl from "../components/estate-list-control";
-import Estate from "../components/estate-list-item";
 import EstateList from "../components/estate-list";
 
 const PAGE_SIZE = 12;

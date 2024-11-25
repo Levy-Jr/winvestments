@@ -13,7 +13,8 @@ export default {
         foreground: "var(--foreground)",
         grayAccent: '#666',
         darkBrown: "#AC894C",
-        lightBrown: "#D4C09B"
+        lightBrown: "#D4C09B",
+        buttonGray: "#95a3ab"
       },
       width: {
         'container': 'min(95%,90rem)',

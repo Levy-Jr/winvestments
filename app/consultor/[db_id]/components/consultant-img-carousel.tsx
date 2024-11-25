@@ -5,27 +5,26 @@ import { cn } from "@/lib/utils"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
 import { Foto } from "smart-imob-types"
-import { ActiveButtonType } from "./estate-list"
 
-const EstateImgCarousel = ({ activeButton, fotos }: { activeButton?: ActiveButtonType, fotos: Foto[] }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({})
+const ConsultantImgCarousel = ({ fotos }: { fotos: Foto[] }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ watchDrag: false })
 
   const { selectedIndex, scrollSnaps, onSlideButtonClick } = useSlideButton(emblaApi)
 
   return (
-    <div className="embla relative">
+    <div className="embla relative max-h-[27.1875rem]">
       <div className="embla__viewport overflow-hidden" ref={emblaRef}>
         <ul className="flex">
           {fotos.map((foto, index) => {
             if (index + 1 <= 5) {
               return <li
                 key={index}
-                className="flex-[0_0_100%] max-h-[500px]"
+                className="flex-[0_0_100%]"
               >
                 <Image
-                  className="object-cover max-w-full max-h-full min-h-[31.25rem]"
-                  width={850}
-                  height={500}
+                  className="object-cover w-full h-[27.1875rem]"
+                  width={500}
+                  height={435}
                   src={foto.source.uri}
                   alt="Foto do imóvel"
                 />
@@ -34,16 +33,15 @@ const EstateImgCarousel = ({ activeButton, fotos }: { activeButton?: ActiveButto
           })}
         </ul>
       </div>
-      <ul className={cn("flex gap-2 right-1/2 translate-x-1/2 absolute bottom-4", activeButton === 'rows' ? "gap-1 lg:gap-2" : "")}>
+      <ul className="flex gap-2 right-1/2 translate-x-1/2 absolute bottom-4">
         {scrollSnaps.map((_, index) => (
           <li
             key={index}
           >
             <SlideButton
               onClick={() => onSlideButtonClick(index)}
-              className={cn("bg-[#E9E4DE] opacity-70 hover:opacity-90 rounded-[.625rem] h-[.625rem]",
-                index === selectedIndex ? "bg-[#2F4856]" : "",
-                activeButton === "rows" ? "w-[3.75rem] lg:w-[4.375rem]" : "w-[3.125rem] sm:w-[4.375rem]"
+              className={cn("bg-[#E9E4DE] opacity-70 hover:opacity-90 rounded-[.625rem] h-[.625rem] w-[3.125rem] sm:w-[4.375rem]",
+                index === selectedIndex ? "bg-[#2F4856]" : ""
               )}
             />
           </li>
@@ -53,4 +51,4 @@ const EstateImgCarousel = ({ activeButton, fotos }: { activeButton?: ActiveButto
   )
 }
 
-export default EstateImgCarousel
+export default ConsultantImgCarousel
