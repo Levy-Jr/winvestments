@@ -3,7 +3,7 @@
 const Form = () => {
   return (
     <form className="relative w-[min(100%,31.25rem)] bg-white mx-auto rounded-[.625rem] my-[4.6875rem] p-5 before:absolute before:inset-0 before:-z-10 before:-m-[.125rem] before:rounded-[inherit] before:bg-gradient-to-r before:from-lightBrown before:to-darkBrown">
-      <h2 className="font-newsReader text-3xl text-grayAccent text-center">ANUNCIE NO SITE</h2>
+      <h2 className="font-newsReader text-3xl text-grayAccent text-center">ENCOMENDE UM IMÓVEL</h2>
       <div className="text-grayAccent *:placeholder:text-black mt-10 mb-[1.875rem] grid gap-[.625rem] [&>input]:pl-5 [&>input]:rounded-[100vmax] *:outline-none [&>input]:py-2 *:border-[.0625rem] *:border-[#F2F2F2]">
         <input
           type="text"

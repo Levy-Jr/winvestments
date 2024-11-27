@@ -6,7 +6,12 @@ import DormitoryIcon from "@/public/estates/dormitory-icon.svg"
 import VacanciesIcon from "@/public/estates/vacancies-icon.svg"
 import PrivateIcon from "@/public/estates/private-area-icon.svg"
 import BathroomIcon from "@/public/estates/bathroom-icon.svg"
+import GoldenWppIcon from "@/public/footer/golden-wpp-icon.svg"
+import GoldenTelIcon from "@/public/footer/golden-tel-icon.svg"
+import GoldenEmailIcon from "@/public/footer/golden-email-icon.svg"
 import { formatCurrency } from "@/utils/formatters";
+import EstatePageForm from "./components/estate-page-form";
+import LogoDivisor from "@/public/logo.svg"
 
 const getData = async (id: string): Promise<{
   imovel: Imóvel
@@ -44,8 +49,8 @@ const EstatePage = async (props: {
       <EstatePageImgCarousel
         fotos={imovel.fotos}
       />
-      <div className="w-lg-container mx-auto flex">
-        <div className="w-[calc(100%-31.25rem)]">
+      <div className="w-lg-container mx-auto flex flex-col md:flex-row gap-[1.875rem]">
+        <div className="md:w-[calc(100%-21.875rem)] lg:w-[calc(100%-31.25rem)]">
           <h1 className="font-newsReader uppercase text-[2rem] mb-10 text-center">{imovel.titulo}</h1>
           <p className="uppercase text-center mb-[.625rem] text-[1.375rem]">
             {imovel.tipo} - {imovel.area_privativa}M² priv - {imovel.suítes} suíte{Number(imovel.suítes) == 1 ? null : "s"} -
@@ -57,7 +62,7 @@ const EstatePage = async (props: {
             {imovel.cidade.nome}
           </p>
           <p className="text-sm text-center mb-10">Referência {imovel.codigo} {imovel.agenciador ? `- ${imovel.agenciador?.nome}` : null} </p>
-          <ul className="relative flex pt-10 justify-between [&_b]:text-xl [&_span]:leading-[1] [&_span]:text-[.75rem] [&_b]:leading-[1] *:grid *:gap-2 *:place-items-center before:absolute before:top-0 before:left-0 before:w-full before:h-[.0625rem] before:bg-gradient-to-r before:from-darkBrown before:to-lightBrown">
+          <ul className="relative flex flex-wrap pt-10 gap-10 md:gap-2 justify-center md:justify-around [&_b]:text-xl [&_span]:leading-[1] [&_span]:text-[.75rem] [&_b]:leading-[1] *:grid *:gap-2 *:place-items-center before:absolute before:top-0 before:left-0 before:w-full before:h-[.0625rem] before:bg-gradient-to-r before:from-darkBrown before:to-lightBrown">
             {imovel.suítes ?
               (<li>
                 <Image
@@ -116,7 +121,7 @@ const EstatePage = async (props: {
               </li>
             ) : null}
           </ul>
-          <div className="flex font-light uppercase text-[.75rem] mt-[3.75rem] justify-between max-w-[40.625rem] mx-auto">
+          <div className="flex flex-col md:flex-row items-center md:items-start font-light uppercase text-[.75rem] mt-[3.75rem] justify-between max-w-[40.625rem] mx-auto">
             <p>
               <span>Valor</span>
               <span className="font-normal text-2xl">
@@ -191,14 +196,45 @@ const EstatePage = async (props: {
               </li>
             </ul>
           </div>
-          <div className="mb-[4.6875rem]">
-            <h2 className="text-center font-newsReader text-[2rem] mb-10">COMPOSIÇÃO</h2>
-            <ul className="flex justify-center flex-wrap mx-auto text-sm *:bg-white *:rounded-[1.25rem] gap-[.625rem] *:px-[.625rem]">
-              <li></li>
-            </ul>
+          {imovel.caracteristicas.length > 0 ? (
+            <div className="mb-[4.6875rem]">
+              <h2 className="text-center font-newsReader text-[2rem] mb-10">COMPOSIÇÃO</h2>
+              <ul className="flex justify-center flex-wrap mx-auto text-sm *:bg-white *:rounded-[1.25rem] gap-[.625rem] *:px-[.625rem]">
+                {imovel.caracteristicas.map((item, index) => (
+                  <li className="bg-white px-[.625rem] rounded-[1.25rem]" key={index}>
+                    {item.nome}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+          <div></div>
+          <div className="flex flex-col md:flex-row flex-wrap gap-3 xl:gap-20 justify-center mb-[4.6875rem] *:flex *:justify-center md:*:justify-start *:items-center *:py-4 *:font-light *:px-8 *:gap-2 *:rounded-[1.875rem] *:border-[.0625rem] *:border-lightBrown">
+            <button>
+              <Image src={GoldenWppIcon} alt="Whatsapp" />
+              CONVERSAR NO WHATSAPP
+            </button>
+            <a href={String(imovel.número)}>
+              <Image src={GoldenTelIcon} alt="Telefone" />
+              LIGAR AGORA
+            </a>
+            <button>
+              <Image src={GoldenEmailIcon} alt="Email" />
+              ENVIAR UM E-MAIL
+            </button>
           </div>
         </div>
-        <div></div>
+        <div className="md:w-[min(100%,21.875rem)] lg:w-[min(100%,31.25rem)]">
+          <div className="sticky mb-10 top-[1.875rem]">
+            <EstatePageForm imovel={imovel} />
+          </div>
+        </div>
+      </div>
+      <div className="w-lg-container mx-auto mb-[1.875rem] flex items-center gap-4 before:h-[.125rem] before:w-full before:bg-[#b1bac1] after:h-[.125rem] after:w-full after:bg-[#b1bac1]">
+        <Image
+          src={LogoDivisor}
+          alt="Logo"
+        />
       </div>
     </main>
   )
