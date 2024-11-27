@@ -6,8 +6,9 @@ import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
 import { Foto } from "smart-imob-types"
 import { ActiveButtonType } from "./estate-list"
+import Link from "next/link"
 
-const EstateImgCarousel = ({ activeButton, fotos }: { activeButton?: ActiveButtonType, fotos: Foto[] }) => {
+const EstateImgCarousel = ({ activeButton, fotos, href }: { activeButton?: ActiveButtonType, fotos: Foto[], href: string }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({})
 
   const { selectedIndex, scrollSnaps, onSlideButtonClick } = useSlideButton(emblaApi)
@@ -22,13 +23,15 @@ const EstateImgCarousel = ({ activeButton, fotos }: { activeButton?: ActiveButto
                 key={index}
                 className="flex-[0_0_100%] max-h-[500px]"
               >
-                <Image
-                  className="object-cover max-w-full max-h-full min-h-[31.25rem]"
-                  width={850}
-                  height={500}
-                  src={foto.source.uri}
-                  alt="Foto do imóvel"
-                />
+                <Link href={href}>
+                  <Image
+                    className="object-cover max-w-full max-h-full min-h-[31.25rem]"
+                    width={850}
+                    height={500}
+                    src={foto.source.uri}
+                    alt="Foto do imóvel"
+                  />
+                </Link>
               </li>
             }
           })}

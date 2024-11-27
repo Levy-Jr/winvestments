@@ -1,0 +1,207 @@
+import { Imóvel } from "smart-imob-types";
+import EstatePageImgCarousel from "./components/estate-page-img-carousel";
+import Image from "next/image";
+import SuiteIcon from "@/public/estates/suite-icon.svg"
+import DormitoryIcon from "@/public/estates/dormitory-icon.svg"
+import VacanciesIcon from "@/public/estates/vacancies-icon.svg"
+import PrivateIcon from "@/public/estates/private-area-icon.svg"
+import BathroomIcon from "@/public/estates/bathroom-icon.svg"
+import { formatCurrency } from "@/utils/formatters";
+
+const getData = async (id: string): Promise<{
+  imovel: Imóvel
+}> => {
+  const uri =
+    process.env.BACKEND_API_URI ?? process.env.NEXT_PUBLIC_BACKEND_API_URI;
+  const empresa_id: any =
+    process.env.EMPRESA_ID ?? process.env.NEXT_PUBLIC_EMPRESA_ID;
+
+  const params = new URLSearchParams({
+    empresa_id
+  });
+
+  const imovel = await fetch(`${uri}/imoveis/site/${id}?${params.toString()}`);
+
+  return {
+    imovel: await imovel.json(),
+  };
+}
+
+const EstatePage = async (props: {
+  params: Promise<{ db_id: string }>
+}) => {
+  const { db_id } = await props.params
+  const { imovel } = await getData(db_id)
+
+  return (
+    <main>
+      <div
+        className="fixed bg-[top_center] bg-fixed -z-10 inset-0"
+        style={{
+          backgroundImage: `url('/marble-bg.webp')`
+        }}
+      />
+      <EstatePageImgCarousel
+        fotos={imovel.fotos}
+      />
+      <div className="w-lg-container mx-auto flex">
+        <div className="w-[calc(100%-31.25rem)]">
+          <h1 className="font-newsReader uppercase text-[2rem] mb-10 text-center">{imovel.titulo}</h1>
+          <p className="uppercase text-center mb-[.625rem] text-[1.375rem]">
+            {imovel.tipo} - {imovel.area_privativa}M² priv - {imovel.suítes} suíte{Number(imovel.suítes) == 1 ? null : "s"} -
+            {imovel.vagas ?
+              <span> {imovel.vagas} vaga{Number(imovel.vagas) === 1 ? null : "s"} - </span>
+              :
+              null
+            }
+            {imovel.cidade.nome}
+          </p>
+          <p className="text-sm text-center mb-10">Referência {imovel.codigo} {imovel.agenciador ? `- ${imovel.agenciador?.nome}` : null} </p>
+          <ul className="relative flex pt-10 justify-between [&_b]:text-xl [&_span]:leading-[1] [&_span]:text-[.75rem] [&_b]:leading-[1] *:grid *:gap-2 *:place-items-center before:absolute before:top-0 before:left-0 before:w-full before:h-[.0625rem] before:bg-gradient-to-r before:from-darkBrown before:to-lightBrown">
+            {imovel.suítes ?
+              (<li>
+                <Image
+                  className="max-w-[3.4375rem] max-h-10"
+                  src={SuiteIcon}
+                  alt="Ícone de suite"
+                />
+                <b>{imovel.suítes}</b>
+                <span>SUÍTES</span>
+              </li>) : null
+            }
+            {imovel.dormitórios &&
+              !imovel.não_mostrar_dormítorios ? (
+              <li>
+                <Image
+                  className="max-w-[4.6875rem] max-h-10"
+                  src={DormitoryIcon}
+                  alt="Ícone de dormitório"
+                />
+                <b>{imovel.dormitórios}</b>
+                <span>QUARTO{`${Number(imovel.dormitórios || 0) > 1 ? "S" : ""}`}</span>
+              </li>
+            ) : null}
+            {imovel.banheiros ?
+              (
+                <li>
+                  <Image
+                    className="max-w-[4.6875rem] max-h-10"
+                    src={BathroomIcon}
+                    alt="Ícone de banheiro"
+                  />
+                  <b>{imovel.banheiros}</b>
+                  <span>BANHEIRO{`${Number(imovel.dormitórios || 0) > 1 ? "S" : ""}`}</span>
+                </li>
+              ) : null}
+            {imovel.vagas ? (
+              <li>
+                <Image
+                  className="max-w-[4.6875rem] max-h-10"
+                  src={VacanciesIcon}
+                  alt="Ícone de vagas"
+                />
+                <b>{imovel.vagas}</b>
+                <span>VAGAS</span>
+              </li>
+            ) : null}
+            {imovel.area_privativa ? (
+              <li>
+                <Image
+                  className="max-w-[4.0625rem] max-h-10"
+                  src={PrivateIcon}
+                  alt="Ícone de área privativa"
+                />
+                <b>{imovel.area_privativa} M²</b>
+                <span>PRIVATIVOS</span>
+              </li>
+            ) : null}
+          </ul>
+          <div className="flex font-light uppercase text-[.75rem] mt-[3.75rem] justify-between max-w-[40.625rem] mx-auto">
+            <p>
+              <span>Valor</span>
+              <span className="font-normal text-2xl">
+                {imovel.preço_venda &&
+                  (imovel.venda_exibir_valor_no_site === undefined || imovel.venda_exibir_valor_no_site === true)
+                  ?
+                  formatCurrency(imovel.preço_venda)
+                  : " consulte-nos"
+                }
+              </span>
+            </p>
+            <p>
+              <span>Valor</span>
+              <span className="font-normal text-2xl">
+                {imovel.preço_condominio ?
+                  formatCurrency(imovel.preço_condominio)
+                  : " consulte-nos"
+                }
+              </span>
+            </p>
+          </div>
+          {imovel.video_youtube ? (
+            <div className="py-10 bg-white relative before:absolute before:w-screen before:h-full before:bg-white before:top-0 before:left-[-5%]">
+              <iframe className="w-full h-[90vh] max-h-[33.75rem] rounded-[1.25rem]" loading="lazy" src={imovel.video_youtube} title="T1E9 - W Talks: Leonardo Castelo - O Rei do Franchising 👑" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            </div>
+          ) : null}
+          <div className="mb-[4.375rem]">
+            <h2 className="text-center font-newsReader text-[2rem] pt-[3.125rem] mb-10">CONHEÇA MAIS</h2>
+            <p>{imovel.descrição}</p>
+          </div>
+          <div className="mb-[4.6875rem]">
+            <h2 className="text-center font-newsReader text-[2rem] mb-10">DETALHES</h2>
+            <ul className="flex justify-center flex-wrap text-[.625rem] gap-[.625rem] *:w-40 *:py-4 [&_span]:inline-block [&_span]:mt-[.3125rem] [&_span]:text-sm *:text-center *:bg-white *:rounded-[1.25rem]">
+              <li>
+                <p>REFERÊNCIA <br /> <span>{imovel.codigo}</span></p>
+              </li>
+              <li>
+                <p>TIPO DE USO <br /> <span>{imovel.tipo}</span></p>
+              </li>
+              <li>
+                <p>ENDEREÇO <br /> <span>{imovel.rua}</span></p>
+              </li>
+              <li>
+                <p>EDIFÍCIO <br /> <span>{imovel.rua}</span></p>
+              </li>
+              <li>
+                <p>MUNICÍPIO <br /> <span>{imovel.cidade.nome}</span></p>
+              </li>
+              <li>
+                <p>UF <br /> <span>{imovel.estado.nome}</span></p>
+              </li>
+              <li>
+                <p>CEP <br /> <span>{imovel.CEP}</span></p>
+              </li>
+              <li>
+                <p>ÁREA TERRENO <br /> <span>{imovel.area_terreno}</span></p>
+              </li>
+              <li>
+                <p>TIPO <br /> <span>{imovel.tipo}</span></p>
+              </li>
+              <li>
+                <p>IPTU <br /> <span>{imovel.IPTU}</span></p>
+              </li>
+              <li>
+                <p>TIPO DE PORTARIA <br /> <span>{imovel.tipo}</span></p>
+              </li>
+              <li>
+                <p>ESTADO DE CONSERVAÇÃO <br /> <span>{imovel.tipo}</span></p>
+              </li>
+              <li>
+                <p>CONSERVAÇÃO <br /> <span>{imovel.tipo}</span></p>
+              </li>
+            </ul>
+          </div>
+          <div className="mb-[4.6875rem]">
+            <h2 className="text-center font-newsReader text-[2rem] mb-10">COMPOSIÇÃO</h2>
+            <ul className="flex justify-center flex-wrap mx-auto text-sm *:bg-white *:rounded-[1.25rem] gap-[.625rem] *:px-[.625rem]">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </main>
+  )
+}
+
+export default EstatePage

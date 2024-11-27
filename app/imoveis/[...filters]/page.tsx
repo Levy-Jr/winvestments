@@ -137,6 +137,7 @@ const Imoveis = async (props: {
 
   const totalPages = Math.ceil(imoveis.total / PAGE_SIZE)
 
+  console.log(imoveis)
   return (
     <main className="w-lg-container text-grayAccent mx-auto mb-20">
       <div

@@ -22,10 +22,11 @@ const Estate = ({ imovel, activeButton }: { imovel: Imóvel, activeButton: Activ
     >
       <p className="text-[1.375rem] font-light absolute z-10 bg-[#000000b3] text-white top-[.625rem] uppercase rounded-[100vmax] py-1 px-8 left-[.625rem]">{imovel.tipo}</p>
       <p className="font-light absolute z-10 bg-[#000000b3] text-white top-[4rem] uppercase rounded-[100vmax] py-2 px-8 left-[.625rem]">{imovel.bairro}/{imovel.cidade.nome}</p>
-      <div className={cn("", activeButton === "rows" ? "flex-1" : "")}>
+      <div className={cn("block", activeButton === "rows" ? "flex-1" : "")}>
         <EstateImgCarousel
           activeButton={activeButton}
           fotos={imovel.fotos}
+          href={`/imovel/venda/${imovel.db_id}`}
         />
       </div>
       <div className={cn("py-4", activeButton === "rows" ? "grid content-between flex-1 text-sm lg:text-base" : "")}>
@@ -89,7 +90,11 @@ const Estate = ({ imovel, activeButton }: { imovel: Imóvel, activeButton: Activ
             (<p className="text-sm">Valor <span className="font-semibold text-2xl">{formatCurrency(imovel.preço_venda)}</span></p>)
             :
             (<p className="text-lg">Consulte-nos</p>)}
-          <Link className={cn("inline-block rounded-[100vmax] py-[.625rem] text-center bg-[#95a3ab] hover:bg-[#BEA473] text-white", activeButton === "rows" ? "px-6" : "w-[min(100%,15.625rem)]")} href="">VEJA MAIS</Link>
+          <Link
+            href={`/imovel/venda/${imovel.db_id}`}
+            className={cn("inline-block rounded-[100vmax] py-[.625rem] text-center bg-[#95a3ab] hover:bg-[#BEA473] text-white", activeButton === "rows" ? "px-6" : "w-[min(100%,15.625rem)]")}>
+            VEJA MAIS
+          </Link>
         </div>
       </div>
     </li>

@@ -38,6 +38,7 @@ declare module "smart-imob-types" {
     empresa_id: string;
     não_mostrar_dormítorios?: boolean;
     temporada?: boolean;
+    agenciador: Corretor;
     CEP?: string | null;
     tipo_iptu?: string | null;
     padrao_taxa_servico?: number;
