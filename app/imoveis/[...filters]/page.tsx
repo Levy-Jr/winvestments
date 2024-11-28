@@ -1,7 +1,7 @@
 import slugify from "slugify";
 import { getData } from "./data";
 import { notFound } from "next/navigation";
-import EstateList from "../components/estate-list";
+import EstateList from "@/components/estate-list";
 
 const PAGE_SIZE = 12;
 
@@ -136,10 +136,8 @@ const Imoveis = async (props: {
   }
 
   const totalPages = Math.ceil(imoveis.total / PAGE_SIZE)
-
-  console.log(imoveis)
   return (
-    <main className="w-lg-container text-grayAccent mx-auto mb-20">
+    <main className="w-lg-container mx-auto mb-20">
       <div
         className="fixed bg-[top_center] bg-fixed -z-10 inset-0"
         style={{

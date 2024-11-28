@@ -66,15 +66,15 @@ const HeaderNav = () => {
     },
     {
       label: "LANÇAMENTOS",
-      href: "/lancamentos"
+      href: "/lancamentos/transacao-lancamento"
     },
     {
       label: "IMÓVEIS PRONTOS",
-      href: "/imoveis/prontos"
+      href: "/imoveis/caracteristicas-imoveis%20prontos"
     },
     {
       label: "LOCAÇÃO",
-      href: "/imoveis/locacao"
+      href: "/imoveis/locacao/transacao-locacao"
     },
     {
       label: "ENCOMENDE UM IMÓVEL",
@@ -117,7 +117,7 @@ const HeaderNav = () => {
           </button>
           <button
             onClick={toggleMenu}
-            className="bg-black/75 py-[.875rem] pl-3 sm:pl-4 pr-6 sm:pr-8 rounded-l-[100vmax] text-white"
+            className="bg-black/75 py-[.875rem] pl-3 sm:pl-4 pr-6 sm:pr-12 rounded-l-[100vmax] text-white"
           >
             MENU
             <div className="w-[1.125rem] grid gap-1 *:bg-white *:w-full *:h-[.125rem]">
