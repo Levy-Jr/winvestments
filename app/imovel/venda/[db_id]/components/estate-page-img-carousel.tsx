@@ -30,6 +30,7 @@ const EstatePageImgCarousel = ({ fotos }: { fotos: Foto[] }) => {
             <li className="flex-[0_0_100%] min-h-[100svh]" key={index}>
               <button>
                 <Image
+                  loading="eager"
                   className="object-cover object-center w-full h-full"
                   src={foto.source.uri}
                   alt="Foto do imóvel"
