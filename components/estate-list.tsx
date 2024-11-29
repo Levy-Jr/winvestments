@@ -5,6 +5,7 @@ import EstateListControl from "./estate-list-control"
 import Estate from "./estate-list-item"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+import EstatesMap from "./estates-map"
 
 export type ActiveButtonType = "grid" | "rows" | "map";
 
@@ -23,17 +24,20 @@ const EstateList = ({ imoveis }: { imoveis: Imóvel[] }) => {
         handleButtonClick={handleButtonClick}
         orderBtnToggle={orderBtnToggle}
       />
-      <ul className={cn("grid w-[min(100%,43.75rem)] mx-auto lg:w-auto lg:mx-0 center lg:grid-cols-2 gap-10",
-        activeButton === "rows" ? "lg:grid-cols-1 w-auto" : null
-      )}>
-        {imoveis.map((imovel, index) => (
-          <Estate
-            activeButton={activeButton}
-            key={index}
-            imovel={imovel}
-          />
-        ))}
-      </ul>
+      {activeButton === "grid" || activeButton === "rows" ? (
+        <ul className={cn("grid w-[min(100%,43.75rem)] mx-auto lg:w-auto lg:mx-0 center lg:grid-cols-2 gap-10",
+          activeButton === "rows" ? "lg:grid-cols-1 w-auto" : null
+        )}>
+          {imoveis.map((imovel, index) => (
+            <Estate
+              activeButton={activeButton}
+              key={index}
+              imovel={imovel}
+            />
+          ))}
+        </ul>
+      ) : <EstatesMap />}
+
     </>
   )
 }

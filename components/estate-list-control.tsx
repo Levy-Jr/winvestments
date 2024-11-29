@@ -19,7 +19,7 @@ const EstateListControl = ({ activeButton, activeOrderButton, handleButtonClick,
   const orderList = ["Menor Valor", "Maior Valor", "Menor Área", "Maior Área", "Recentes"]
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between mb-5">
       <button className="relative px-[.625rem] rounded-[.9375rem] w-[min(12.5rem,100%)] text-start bg-white text-sm">
         <span
           onClick={orderBtnToggle}

@@ -17,7 +17,7 @@ const Estate = ({ imovel, activeButton }: { imovel: Imóvel, activeButton: Activ
 
   return (
     <li
-      className={cn("bg-white mt-5 relative rounded-[0.4375rem] overflow-hidden",
+      className={cn("bg-white relative rounded-[0.4375rem] overflow-hidden",
         activeButton === "rows" ? "flex" : "")}
     >
       <p className="text-[1.375rem] font-light absolute z-10 bg-[#000000b3] text-white top-[.625rem] uppercase rounded-[100vmax] py-1 px-8 left-[.625rem]">{imovel.tipo}</p>
