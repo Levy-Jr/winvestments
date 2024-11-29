@@ -25,7 +25,7 @@ const ImoveisLancamentos = async (props: {
           backgroundImage: `url('/marble-bg.webp')`
         }}
       />
-      <h1 className="pt-20 mb-10 text-4xl text-center font-newsReader">{imoveis.total} IMÓVEIS À VENDA</h1>
+      <h1 className="pt-20 mb-10 text-4xl text-center font-newsReader">{imoveis.total} LANÇAMENTOS</h1>
       <EstateList
         imoveis={imoveis.nodes}
       />

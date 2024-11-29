@@ -12,6 +12,7 @@ import GoldenEmailIcon from "@/public/footer/golden-email-icon.svg"
 import { formatCurrency } from "@/utils/formatters";
 import EstatePageForm from "./components/estate-page-form";
 import LogoDivisor from "@/public/logo.svg"
+import GoogleMap from "./components/google-map";
 
 const getData = async (id: string): Promise<{
   imovel: Imóvel
@@ -171,7 +172,7 @@ const EstatePage = async (props: {
                 <p>MUNICÍPIO <br /> <span>{imovel.cidade.nome}</span></p>
               </li>
               <li>
-                <p>UF <br /> <span>{imovel.estado.nome}</span></p>
+                <p>UF <br /> <span>{imovel.estado?.nome}</span></p>
               </li>
               <li>
                 <p>CEP <br /> <span>{imovel.CEP}</span></p>
@@ -208,7 +209,10 @@ const EstatePage = async (props: {
               </ul>
             </div>
           ) : null}
-          <div></div>
+          <div className="mb-[4.6875rem] h-[18.75rem]">
+            {/* <GoogleMap position={{ lat: imovel.lat, lng: imovel.long }} /> */}
+            <GoogleMap position={{ lat: -29.6846, lng: -51.1000 }} />
+          </div>
           <div className="flex flex-col md:flex-row flex-wrap gap-3 xl:gap-20 justify-center mb-[4.6875rem] *:flex *:justify-center md:*:justify-start *:items-center *:py-4 *:font-light *:px-8 *:gap-2 *:rounded-[1.875rem] *:border-[.0625rem] *:border-lightBrown">
             <button>
               <Image src={GoldenWppIcon} alt="Whatsapp" />
