@@ -124,22 +124,22 @@ const EstatePage = async (props: {
           </ul>
           <div className="flex flex-col md:flex-row items-center md:items-start font-light uppercase text-[.75rem] mt-[3.75rem] justify-between max-w-[40.625rem] mx-auto">
             <p>
-              <span>Valor</span>
+              <span>Valor </span>
               <span className="font-normal text-2xl">
                 {imovel.preço_venda &&
                   (imovel.venda_exibir_valor_no_site === undefined || imovel.venda_exibir_valor_no_site === true)
                   ?
                   formatCurrency(imovel.preço_venda)
-                  : " consulte-nos"
+                  : "consulte-nos"
                 }
               </span>
             </p>
             <p>
-              <span>Valor</span>
+              <span>Condomínio </span>
               <span className="font-normal text-2xl">
                 {imovel.preço_condominio ?
                   formatCurrency(imovel.preço_condominio)
-                  : " consulte-nos"
+                  : "consulte-nos"
                 }
               </span>
             </p>
@@ -172,7 +172,11 @@ const EstatePage = async (props: {
                 <p>MUNICÍPIO <br /> <span>{imovel.cidade.nome}</span></p>
               </li>
               <li>
-                <p>UF <br /> <span>{imovel.estado?.nome}</span></p>
+                <p>UF <br />
+                  <span>
+                    {imovel.estado?.nome ?? "N/D"}
+                  </span>
+                </p>
               </li>
               <li>
                 <p>CEP <br /> <span>{imovel.CEP}</span></p>
@@ -184,7 +188,9 @@ const EstatePage = async (props: {
                 <p>TIPO <br /> <span>{imovel.tipo}</span></p>
               </li>
               <li>
-                <p>IPTU <br /> <span>{imovel.IPTU}</span></p>
+                <p>IPTU <br />
+                  <span>{imovel.IPTU ?? "N/D"}</span>
+                </p>
               </li>
               <li>
                 <p>TIPO DE PORTARIA <br /> <span>{imovel.tipo}</span></p>
