@@ -157,19 +157,19 @@ const EstatePage = async (props: {
             <h2 className="text-center font-newsReader text-[2rem] mb-10">DETALHES</h2>
             <ul className="flex justify-center flex-wrap text-[.625rem] gap-[.625rem] *:w-40 *:py-4 [&_span]:inline-block [&_span]:mt-[.3125rem] [&_span]:text-sm *:text-center *:bg-white *:rounded-[1.25rem]">
               <li>
-                <p>REFERÊNCIA <br /> <span>{imovel.codigo}</span></p>
+                <p>REFERÊNCIA <br /> <span>{imovel.codigo ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>TIPO DE USO <br /> <span>{imovel.tipo}</span></p>
+                <p>TIPO DE USO <br /> <span>{imovel.tipo ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>ENDEREÇO <br /> <span>{imovel.rua}</span></p>
+                <p>ENDEREÇO <br /> <span>{imovel.rua ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>EDIFÍCIO <br /> <span>{imovel.rua}</span></p>
+                <p>EDIFÍCIO <br /> <span>{imovel.rua ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>MUNICÍPIO <br /> <span>{imovel.cidade.nome}</span></p>
+                <p>MUNICÍPIO <br /> <span>{imovel.cidade.nome ?? "N/D"}</span></p>
               </li>
               <li>
                 <p>UF <br />
@@ -179,13 +179,13 @@ const EstatePage = async (props: {
                 </p>
               </li>
               <li>
-                <p>CEP <br /> <span>{imovel.CEP}</span></p>
+                <p>CEP <br /> <span>{imovel.CEP ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>ÁREA TERRENO <br /> <span>{imovel.area_terreno}</span></p>
+                <p>ÁREA TERRENO <br /> <span>{imovel.area_terreno ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>TIPO <br /> <span>{imovel.tipo}</span></p>
+                <p>TIPO <br /> <span>{imovel.tipo ?? "N/D"}</span></p>
               </li>
               <li>
                 <p>IPTU <br />
@@ -193,13 +193,13 @@ const EstatePage = async (props: {
                 </p>
               </li>
               <li>
-                <p>TIPO DE PORTARIA <br /> <span>{imovel.tipo}</span></p>
+                <p>TIPO DE PORTARIA <br /> <span>{imovel.tipo ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>ESTADO DE CONSERVAÇÃO <br /> <span>{imovel.tipo}</span></p>
+                <p>ESTADO DE CONSERVAÇÃO <br /> <span>{imovel.tipo ?? "N/D"}</span></p>
               </li>
               <li>
-                <p>CONSERVAÇÃO <br /> <span>{imovel.tipo}</span></p>
+                <p>CONSERVAÇÃO <br /> <span>{imovel.tipo ?? "N/D"}</span></p>
               </li>
             </ul>
           </div>
