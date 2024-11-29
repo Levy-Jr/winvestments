@@ -29,7 +29,7 @@ const GoogleMap = ({ position }: { position: { lat: number; lng: number } }) => 
       {showMap ? (
         <APIProvider apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY as string}>
           <Map
-            defaultZoom={10}
+            defaultZoom={18}
             defaultCenter={position}
             mapId={process.env.NEXT_PUBLIC_MAP_ID as string}
           >

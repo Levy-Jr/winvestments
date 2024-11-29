@@ -209,10 +209,11 @@ const EstatePage = async (props: {
               </ul>
             </div>
           ) : null}
-          <div className="mb-[4.6875rem] h-[18.75rem]">
-            {/* <GoogleMap position={{ lat: imovel.lat, lng: imovel.long }} /> */}
-            <GoogleMap position={{ lat: -29.6846, lng: -51.1000 }} />
-          </div>
+          {imovel.lat && imovel.long ? (
+            <div className="mb-[4.6875rem] h-[18.75rem]">
+              <GoogleMap position={{ lat: imovel.lat, lng: imovel.long }} />
+            </div>
+          ) : null}
           <div className="flex flex-col md:flex-row flex-wrap gap-3 xl:gap-20 justify-center mb-[4.6875rem] *:flex *:justify-center md:*:justify-start *:items-center *:py-4 *:font-light *:px-8 *:gap-2 *:rounded-[1.875rem] *:border-[.0625rem] *:border-lightBrown">
             <button>
               <Image src={GoldenWppIcon} alt="Whatsapp" />
