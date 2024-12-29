@@ -7,16 +7,31 @@ const FormSection = () => {
           <form className="max-w-[40.625rem] ml-auto bg-[#d39864] px-10 pt-8 pb-8">
             <h2 className="text-3xl">ENTRE EM CONTATO</h2>
             <div className="grid mt-4 gap-4 *:text-xl *:bg-[#e6c5a8] *:placeholder:text-black *:text-black *:px-3 *:py-3">
-              <input type="text" placeholder="NOME*" name="" id="" />
-              <input type="email" placeholder="EMAIL*" name="" id="" />
-              <input type="text" placeholder="TELEFONE*" name="" id="" />
-              <input type="text" placeholder="MENSAGEM" name="" id="" />
+              <input
+                type="text"
+                placeholder="NOME*"
+                name=""
+                id=""
+              />
+              <input
+                type="email"
+                placeholder="EMAIL*"
+                name=""
+                id=""
+              />
+              <input
+                type="text"
+                placeholder="TELEFONE*"
+                name=""
+                id=""
+              />
+              <textarea className="resize-none" rows={5} placeholder="MENSAGEM" name="" id="" ></textarea>
             </div>
             <button className="mt-3 text-2xl tracking-wide bg-[#333333] text-white px-7 py-3">ENVIAR &gt;</button>
           </form>
         </div>
       </div>
-      <div className="md:flex gap-14 mt-12">
+      <div className="md:flex gap-14 mt-12 md:mt-24">
         <div className="flex-1">
           <div className="bg-gray-500 w-full h-full rounded-lg"></div>
           {/* <Image
@@ -31,8 +46,8 @@ const FormSection = () => {
             vitae arcu. Vivamus aliquam volutpat arcu, eget
             hendrerit est convallis a. Nunc id leo eget urna imperdiet
             mollis in ut ante. Fusce ut porttitor nulla. Pellentesque
-            interdum odio felis.
-            Pellentesque laoreet justo a augue lobortis suscipit.
+            interdum odio felis.</p>
+          <p className="text-2xl mt-6">Pellentesque laoreet justo a augue lobortis suscipit.
             Integer bibendum fringilla interdum. Nulla vel turpis sit
             amet elit interdum euismod non non velit.
           </p>
