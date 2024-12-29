@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import { Newsreader, Roboto } from "next/font/google"
 import "./globals.css";
-import HeaderNav from "@/components/header";
-import Footer from "@/components/footer";
-import WppBtn from "@/components/wpp-btn";
-import { Suspense } from "react";
-import { ModalProvider } from "../components/wpp-modal";
-import { WppModalProvider } from "@/contexts/wpp-modal-context";
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -36,15 +30,7 @@ export default function RootLayout({
       <body
         className={`${newsReader.variable} ${roboto.variable} font-roboto text-grayAccent antialiased`}
       >
-        <Suspense>
-          <HeaderNav />
-        </Suspense>
-        <WppModalProvider>
-          <ModalProvider />
-          <WppBtn />
-        </WppModalProvider>
         {children}
-        <Footer />
       </body>
     </html>
   );

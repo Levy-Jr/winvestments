@@ -1,6 +1,6 @@
 "use client"
 
-import { SlideButton, useSlideButton } from "@/app/(home)/components/slide-button"
+import { SlideButton, useSlideButton } from "@/app/(winvestments)/(home)/components/slide-button"
 import { cn } from "@/lib/utils"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
