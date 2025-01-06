@@ -10,6 +10,7 @@ import PartnersLogo from "@/public/header/header-logo.webp"
 import GoldenTelIcon from "@/public/footer/golden-tel-icon.svg"
 import GoldenEmailIcon from "@/public/footer/golden-email-icon.svg"
 import GoldenInstagramIcon from "@/public/footer/golden-instagram-icon.svg"
+import { Suspense } from "react"
 
 
 const getData = async (id: string): Promise<{
@@ -63,9 +64,11 @@ const Partners = async (props: {
 
   return (
     <>
-      <Header
-        tel={corretor.telefone}
-      />
+      <Suspense>
+        <Header
+          tel={corretor.telefone}
+        />
+      </Suspense>
       <main className="text-black">
         <div className="relative">
           <div

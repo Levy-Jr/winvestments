@@ -3,12 +3,15 @@ import PartnersList from "./components/partners-list"
 import LogoDivisor from "@/public/logo.svg"
 import Footer from "@/components/footer"
 import HeaderNav from "@/components/header"
+import { Suspense } from "react"
 
 const PartnersPage = () => {
 
   return (
     <>
-      <HeaderNav />
+      <Suspense>
+        <HeaderNav />
+      </Suspense>
       <main className="w-lg-container mt-20 mx-auto">
         <div
           className="fixed bg-[top_center] bg-fixed -z-10 inset-0"
