@@ -48,7 +48,7 @@ const PartnersList = async () => {
             className="bg-white grid content-between rounded-t-lg overflow-hidden"
             key={parceiro.db_id}
           >
-            <Link href={`/consultor/${parceiro.db_id}`}>
+            <Link href={`/partners/${parceiro.db_id}`}>
               <Image
                 className="w-full [aspect-ratio:3/4] object-cover"
                 src={parceiro.foto ?? ""}
