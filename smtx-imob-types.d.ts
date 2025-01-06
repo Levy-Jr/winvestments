@@ -791,6 +791,7 @@ declare module "smart-imob-types" {
     migração: true;
     whatsapp: boolean;
     error?: boolean;
+    parceiro: boolean;
     qtdImoveis: number;
     anos_de_experiencia: number | null;
   }

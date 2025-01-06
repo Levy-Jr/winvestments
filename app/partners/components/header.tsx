@@ -1,11 +1,13 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import HeaderLogo from "@/public/header/header-logo.webp"
 
-const Header = () => {
+const Header = ({ tel }: { tel: string | null }) => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
@@ -18,20 +20,25 @@ const Header = () => {
   return (
     <header className="relative z-10 text-white border-b border-b-[#fdfdfc] py-[3.4375rem]">
       <div className="w-container mx-auto flex items-center justify-between">
-        <div></div>
+        <Link className="ml-2 sm:ml-10" href={"/"}>
+          <Image
+            src={HeaderLogo}
+            alt="Home"
+          />
+        </Link>
         <nav>
-          <ul className={cn("md:flex items-center gap-5", isOpen ? "fixed grid place-content-center text-center inset-0 bg-black/90 z-20" : "hidden")}>
+          <ul className={cn("md:flex items-center gap-12 text-lg", isOpen ? "fixed grid place-content-center text-center inset-0 bg-black/90 z-20" : "hidden")}>
             <li>
-              <Link href={""}>PROCURAR IMÓVEIS</Link>
+              <Link href={"#imoveis"}>PROCURAR IMÓVEIS</Link>
             </li>
             <li>
-              <Link href={""}>SOBRE</Link>
+              <Link href={"#sobre"}>SOBRE</Link>
             </li>
             <li>
-              <Link href={""}>CONTATO</Link>
+              <Link href={"#contato"}>CONTATO</Link>
             </li>
-            <li className="border-2 p-3">
-              (41) 99999-9999
+            <li>
+              <Link className="block border-2 p-3" href={`tel:${tel}`}>{tel}</Link>
             </li>
           </ul>
           <button

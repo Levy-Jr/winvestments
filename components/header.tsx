@@ -85,6 +85,10 @@ const HeaderNav = () => {
       href: "/anuncie"
     },
     {
+      label: "NOSSOS PARCEIROS",
+      href: "/partners"
+    },
+    {
       label: "NOSSOS CONSULTORES",
       href: "/nossos-consultores"
     },

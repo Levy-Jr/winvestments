@@ -1,26 +1,36 @@
-import EstatesSection from "./components/estates-section"
-import Footer from "./components/footer"
-import FormSection from "./components/form-section"
-import Header from "./components/header"
-import HeroSection from "./components/hero-section"
+import Image from "next/image"
+import PartnersList from "./components/partners-list"
+import LogoDivisor from "@/public/logo.svg"
+import Footer from "@/components/footer"
+import HeaderNav from "@/components/header"
 
-const Partners = () => {
+const PartnersPage = () => {
+
   return (
     <>
-      <Header />
-      <main className="text-black">
-        <div className="relative">
-          <div
-            className="absolute inset-0 -top-[10.1875rem] w-full bg-cover z-0 bg-center before:bg-black/40 before:inset-0 before:absolute before:z-0"
-            style={{
-              backgroundImage: "url('/banners/amira-banner.webp')"
-            }}
+      <HeaderNav />
+      <main className="w-lg-container mt-20 mx-auto">
+        <div
+          className="fixed bg-[top_center] bg-fixed -z-10 inset-0"
+          style={{ backgroundImage: `url('/marble-bg.webp')` }}
+        />
+        <h1 className="font-newsReader text-center text-4xl">ENCONTRE UM PARCEIRO IMOBILIÁRIO</h1>
+        <input
+          className="bg-white my-10 bg-no-repeat bg-[size:1rem] bg-[position:1rem_center] rounded-2xl text-sm text-grayAccent pl-10 py-2 pr-3 w-[min(100%,20.625rem)] block mx-auto outline-none"
+          style={{
+            backgroundImage: `url('/header/search-icon.svg')`
+          }}
+          type="text"
+          placeholder="Digite o nome do parceiro"
+        />
+
+        <h2 className="text-center font-newsReader text-[1.75rem] mb-10 text-grayAccent">OU ESCOLHA UM DOS PARCEIROS ABAIXO</h2>
+        <PartnersList />
+        <div className="flex items-center gap-4 mb-[1.875rem] before:h-[.125rem] before:w-full before:bg-[#b1bac1] after:h-[.125rem] after:w-full after:bg-[#b1bac1]">
+          <Image
+            src={LogoDivisor}
+            alt="Logo"
           />
-          <HeroSection />
-        </div>
-        <div className="mx-auto w-container">
-          <FormSection />
-          <EstatesSection />
         </div>
       </main>
       <Footer />
@@ -28,4 +38,4 @@ const Partners = () => {
   )
 }
 
-export default Partners
+export default PartnersPage

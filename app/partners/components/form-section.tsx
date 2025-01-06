@@ -1,4 +1,11 @@
-const FormSection = () => {
+import Image from "next/image"
+import { Corretor } from "smart-imob-types"
+import GoldenWppIcon from "@/public/footer/golden-wpp-icon.svg"
+import GoldenTelIcon from "@/public/footer/golden-tel-icon.svg"
+import GoldenEmailIcon from "@/public/footer/golden-email-icon.svg"
+import GoldenInstagramIcon from "@/public/footer/golden-instagram-icon.svg"
+
+const FormSection = ({ corretor }: { corretor: Corretor }) => {
   return (
     <section className="mt-6">
       <div className="flex flex-col md:flex-row gap-6 items-center">
@@ -33,13 +40,15 @@ const FormSection = () => {
       </div>
       <div className="md:flex gap-14 mt-12 md:mt-24">
         <div className="flex-1">
-          <div className="bg-gray-500 w-full h-full rounded-lg"></div>
-          {/* <Image
-          src={}
-          alt=""
-          /> */}
+          <Image
+            className="mx-auto rounded-xl"
+            src={corretor.foto ?? ""}
+            alt={corretor.nome}
+            width={450}
+            height={450}
+          />
         </div>
-        <div className="flex-1 my-auto max-w-[40.625rem] ml-auto">
+        <div id="sobre" className="flex-1 my-auto max-w-[40.625rem] ml-auto">
           <h2 className="text-6xl">Minha história</h2>
           <p className="text-2xl mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque in felis nec massa pharetra facilisis ac
@@ -53,19 +62,51 @@ const FormSection = () => {
           </p>
         </div>
       </div>
-      <ul className="mt-16 flex flex-wrap text-xl gap-10 justify-center">
-        <li>
-          <a href="">Instagram</a>
-        </li>
-        <li>
-          <a href="">WhatsApp</a>
-        </li>
-        <li>
-          <a href="">Telefone</a>
-        </li>
-        <li>
-          <a href="">Email</a>
-        </li>
+      <ul id="#contato" className="mt-16 flex flex-wrap text-xl gap-10 justify-center items-center [&_li_a]:grid [&_li_a]:place-items-center [&_img]:w-[4rem] [&_li_a]:gap-2">
+        {corretor.instagram ? (
+          <li>
+            <a href={corretor.instagram}>
+              <Image
+                src={GoldenInstagramIcon}
+                alt="Ícone dourado do Instagram"
+              />
+              Instagram
+            </a>
+          </li>
+        ) : null}
+        {corretor.whatsapp ? (
+          <li>
+            <a href={corretor.whatsapp_link ?? ""}>
+              <Image
+                src={GoldenWppIcon}
+                alt="Ícone dourado do Whatsapp"
+              />
+              WhatsApp
+            </a>
+          </li>
+        ) : null}
+        {corretor.telefone ? (
+          <li>
+            <a href={`tel:${corretor.telefone}`}>
+              <Image
+                src={GoldenTelIcon}
+                alt="Ícone dourado de um telefone"
+              />
+              Telefone
+            </a>
+          </li>
+        ) : null}
+        {corretor.email ? (
+          <li>
+            <a href={`mailto:${corretor.email}`}>
+              <Image
+                src={GoldenEmailIcon}
+                alt="Ícone dourado do email"
+              />
+              Email
+            </a>
+          </li>
+        ) : null}
       </ul>
     </section>
   )
