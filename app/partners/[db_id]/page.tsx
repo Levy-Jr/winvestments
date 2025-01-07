@@ -5,11 +5,11 @@ import Header from "../components/header"
 import processFilters from "@/utils/process-backend-filters"
 import Link from "next/link"
 import Image from "next/image"
-import PartnersLogo from "@/public/header/header-logo.webp"
+import PartnersLogo from "@/public/partners/logo/footer-logo.png"
 
-import GoldenTelIcon from "@/public/footer/golden-tel-icon.svg"
-import GoldenEmailIcon from "@/public/footer/golden-email-icon.svg"
-import GoldenInstagramIcon from "@/public/footer/golden-instagram-icon.svg"
+import GoldenTelIcon from "@/public/partners/icons/tel.png"
+import GoldenEmailIcon from "@/public/partners/icons/email.png"
+import GoldenInstagramIcon from "@/public/partners/icons/instagram.png"
 import { Suspense } from "react"
 
 
@@ -72,11 +72,20 @@ const Partners = async (props: {
       <main className="text-black">
         <div className="relative">
           <div
-            className="absolute inset-0 -top-[10.75rem] w-full bg-cover z-0 bg-center before:bg-black/40 before:inset-0 before:absolute before:z-0"
+            className="absolute inset-0 -top-[12.6875rem] w-full bg-cover z-0 bg-center before:bg-black/40 before:inset-0 before:absolute before:-z-0"
             style={{
               backgroundImage: "url('/banners/amira-banner.webp')"
             }}
-          />
+          >
+            {corretor.banner_site ? (
+              <Image
+                className="object-cover object-center"
+                src={corretor.banner_site ?? ""}
+                alt="Background"
+                fill
+              />
+            ) : null}
+          </div>
           <section className="relative w-container text-white py-6 md:py-0 mx-auto flex flex-col-reverse gap-6 md:gap-0 md:flex-row items-center">
             <div className="flex-1 text-center md:text-start md:pt-12">
               <h1 className="text-7xl max-w-[13ch]">{corretor.nome}</h1>
@@ -127,14 +136,18 @@ const Partners = async (props: {
           </nav>
           <Image
             className="mx-auto my-12"
+            width={450}
+            height={450}
             src={PartnersLogo}
             alt="Parners Logo"
           />
           <p className="text-center text-4xl mb-8">{corretor.nome}</p>
-          <ul className="flex flex-col items-center md:flex-row gap-3 *:flex *:items-center *:gap-3">
+          <ul className="flex flex-col items-center md:flex-row gap-4 *:flex *:items-center *:gap-2">
             {corretor.instagram ? (
               <li>
                 <Image
+                  width={40}
+                  height={40}
                   src={GoldenInstagramIcon}
                   alt="Ícone dourado do Instagram"
                 />
@@ -143,23 +156,23 @@ const Partners = async (props: {
             ) : null}
             {corretor.telefone ? (
               <li>
-                <div className="w-[1.5625rem]">
-                  <Image
-                    src={GoldenTelIcon}
-                    alt="Ícone dourado de um telefone"
-                  />
-                </div>
+                <Image
+                  width={40}
+                  height={40}
+                  src={GoldenTelIcon}
+                  alt="Ícone dourado de um telefone"
+                />
                 {corretor.telefone}
               </li>
             ) : null}
             {corretor.email ? (
               <li>
-                <div className="w-[1.5625rem]">
-                  <Image
-                    src={GoldenEmailIcon}
-                    alt="Ícone dourado do email"
-                  />
-                </div>
+                <Image
+                  width={40}
+                  height={40}
+                  src={GoldenEmailIcon}
+                  alt="Ícone dourado do email"
+                />
                 {corretor.email}
               </li>
             ) : null}

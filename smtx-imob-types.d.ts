@@ -763,6 +763,8 @@ declare module "smart-imob-types" {
     depoimentos: boolean;
   }
   interface Corretor {
+    banner_site: string | null;
+    video_site: string | null;
     whatsapp_link: string | null;
     CPF: string;
     CRECI: string;

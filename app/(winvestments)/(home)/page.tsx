@@ -1,6 +1,6 @@
 import FeaturesSection from "./components/features-section";
 import HeroSection from "./components/hero-section";
-import PraySection from "./components/pray-section";
+import WSection from "./components/w-section";
 import WhoAreWeSection from "./components/who-are-we-section";
 import WTalksSection from "./components/wtalks-section";
 
@@ -18,7 +18,7 @@ export default function Home() {
         <div className="w-lg-container mx-auto">
           <WTalksSection />
         </div>
-        <PraySection />
+        <WSection />
       </div>
       <WhoAreWeSection />
     </main>

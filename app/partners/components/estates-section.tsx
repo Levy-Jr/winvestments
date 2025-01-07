@@ -50,7 +50,7 @@ const EstatesSection = ({ imoveis }: { imoveis: Imóvel[] }) => {
                   <div className="relative w-full aspect-video">
                     <Image
                       src={imovel.fotos[0].source.uri}
-                      alt=""
+                      alt="Foto do imóvel"
                       fill
                     />
                   </div>
@@ -115,7 +115,7 @@ const EstatesSection = ({ imoveis }: { imoveis: Imóvel[] }) => {
 
       <div className="mt-10 mb-6 flex justify-center">
         <button
-          className="text-xl text-[#adacb4]"
+          className="text-xl text-[#adacb4] before:block before:mb-2 before:w-[95%] before:mx-auto before:h-[.125rem] before:bg-[#adacb4]"
           onClick={handleLoadMore}
         >
           CARREGAR MAIS

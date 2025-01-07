@@ -1,9 +1,9 @@
 import Image from "next/image"
 import { Corretor } from "smart-imob-types"
-import GoldenWppIcon from "@/public/footer/golden-wpp-icon.svg"
-import GoldenTelIcon from "@/public/footer/golden-tel-icon.svg"
-import GoldenEmailIcon from "@/public/footer/golden-email-icon.svg"
-import GoldenInstagramIcon from "@/public/footer/golden-instagram-icon.svg"
+import GoldenWppIcon from "@/public/partners/icons/wpp.png"
+import GoldenTelIcon from "@/public/partners/icons/tel.png"
+import GoldenEmailIcon from "@/public/partners/icons/email.png"
+import GoldenInstagramIcon from "@/public/partners/icons/instagram.png"
 
 const FormSection = ({ corretor }: { corretor: Corretor }) => {
   return (
@@ -13,7 +13,7 @@ const FormSection = ({ corretor }: { corretor: Corretor }) => {
         <div className="flex-1">
           <form className="max-w-[40.625rem] ml-auto bg-[#d39864] px-10 pt-8 pb-8">
             <h2 className="text-3xl">ENTRE EM CONTATO</h2>
-            <div className="grid mt-4 gap-4 *:text-xl *:bg-[#e6c5a8] *:placeholder:text-black *:text-black *:px-3 *:py-3">
+            <div className="grid mt-4 gap-4 *:outline-none *:text-xl *:bg-[#e6c5a8] *:placeholder:text-black *:text-black *:px-3 *:py-3">
               <input
                 type="text"
                 placeholder="NOME*"
@@ -40,13 +40,16 @@ const FormSection = ({ corretor }: { corretor: Corretor }) => {
       </div>
       <div className="md:flex gap-14 mt-12 md:mt-16">
         <div className="flex-1">
-          <Image
-            className="mx-auto rounded-xl"
-            src={corretor.foto ?? ""}
-            alt={corretor.nome}
-            width={450}
-            height={450}
-          />
+          {corretor.video_site ? (
+            <Image
+              className="mx-auto rounded-xl"
+              src={corretor.video_site}
+              alt={corretor.nome}
+              width={450}
+              height={450}
+            />
+          ) : null}
+
         </div>
         <div id="sobre" className="flex-1 my-auto max-w-[40.625rem] ml-auto">
           <h2 className="text-6xl">Minha história</h2>
@@ -62,11 +65,13 @@ const FormSection = ({ corretor }: { corretor: Corretor }) => {
           </p>
         </div>
       </div>
-      <ul id="#contato" className="mt-16 flex flex-wrap text-xl gap-10 justify-center items-center [&_li_a]:grid [&_li_a]:place-items-center [&_img]:w-[4rem] [&_li_a]:gap-2">
+      <ul id="#contato" className="mt-16 flex flex-wrap text-xl gap-10 justify-center items-center [&_li_a]:grid [&_li_a]:place-items-center [&_img]:w-[5rem] [&_li_a]:gap-2">
         {corretor.instagram ? (
           <li>
             <a href={corretor.instagram}>
               <Image
+                width={50}
+                height={50}
                 src={GoldenInstagramIcon}
                 alt="Ícone dourado do Instagram"
               />

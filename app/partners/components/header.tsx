@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-import HeaderLogo from "@/public/header/header-logo.webp"
+import HeaderLogo from "@/public/partners/logo/header-logo.png"
 
 const Header = ({ tel }: { tel: string | null }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,6 +33,8 @@ const Header = ({ tel }: { tel: string | null }) => {
       <div className="w-container mx-auto flex items-center justify-between">
         <Link className="ml-2 sm:ml-10" href={"/"}>
           <Image
+            width={400}
+            height={400}
             src={HeaderLogo}
             alt="Home"
           />
@@ -48,9 +50,11 @@ const Header = ({ tel }: { tel: string | null }) => {
             <li>
               <Link href={"#contato"}>CONTATO</Link>
             </li>
-            <li>
-              <Link className="block border-2 p-3" href={`tel:${tel}`}>{tel}</Link>
-            </li>
+            {tel ? (
+              <li>
+                <Link className="block border-2 p-3" href={`tel:${tel}`}>{tel}</Link>
+              </li>
+            ) : null}
           </ul>
           <button
             className={cn("relative w-[1.125rem] grid gap-1 *:bg-white *:w-full *:h-[.125rem] md:hidden", isOpen ? "fixed right-4 z-20" : "")}
