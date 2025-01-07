@@ -17,6 +17,17 @@ const Header = ({ tel }: { tel: string | null }) => {
     setIsOpen(false)
   }, [pathname])
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.maxHeight = '100vh'
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.maxHeight = 'unset'
+      document.body.style.overflow = 'unset'
+
+    }
+  }, [isOpen])
+
   return (
     <header className="relative z-10 text-white border-b border-b-[#fdfdfc] py-[3.4375rem]">
       <div className="w-container mx-auto flex items-center justify-between">
@@ -42,7 +53,7 @@ const Header = ({ tel }: { tel: string | null }) => {
             </li>
           </ul>
           <button
-            className={cn("relative w-[1.125rem] grid gap-1 *:bg-white *:w-full *:h-[.125rem] md:hidden", isOpen ? "relative z-20" : "")}
+            className={cn("relative w-[1.125rem] grid gap-1 *:bg-white *:w-full *:h-[.125rem] md:hidden", isOpen ? "fixed right-4 z-20" : "")}
             onClick={toggleMenu}
           >
             <div></div>

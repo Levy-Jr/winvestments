@@ -77,9 +77,9 @@ const Partners = async (props: {
               backgroundImage: "url('/banners/amira-banner.webp')"
             }}
           />
-          <section className="relative w-container text-white py-6 md:py-0 mx-auto flex flex-col-reverse md:flex-row items-center">
+          <section className="relative w-container text-white py-6 md:py-0 mx-auto flex flex-col-reverse gap-6 md:gap-0 md:flex-row items-center">
             <div className="flex-1 text-center md:text-start md:pt-12">
-              <h1 className="text-6xl max-w-[13ch]">{corretor.nome}</h1>
+              <h1 className="text-7xl max-w-[13ch]">{corretor.nome}</h1>
               <h2 className="mt-2 text-3xl">Corretor associado <br />  W Partners</h2>
               <p className="my-4 text-lg">{corretor.telefone} | <Link href={"mailto:"}>{corretor.email}</Link></p>
               <div className="inline-grid gap-2 *:inline-block *:bg-[#d39864] *:text-lg *:text-white *:px-4 *:py-3">
@@ -88,12 +88,13 @@ const Partners = async (props: {
               </div>
             </div>
             <div className="flex-1 md:pt-12">
-              <div className="relative w-[min(100%,40.625rem)] ml-auto aspect-square">
+              <div className="w-[min(100%,30.625rem)] md:w-[min(100%,40.625rem)] mx-auto md:ml-auto aspect-square">
                 <Image
                   src={corretor.foto ?? ""}
                   alt={corretor.nome}
-                  fill
-                  className="object-cover object-top"
+                  width={650}
+                  height={650}
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>

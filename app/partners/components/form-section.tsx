@@ -8,8 +8,8 @@ import GoldenInstagramIcon from "@/public/footer/golden-instagram-icon.svg"
 const FormSection = ({ corretor }: { corretor: Corretor }) => {
   return (
     <section className="mt-6">
-      <div className="flex flex-col md:flex-row gap-6 items-center">
-        <h2 className="flex-1 text-4xl md:text-6xl">Para aqueles que buscam a máxima experiência em atendimento, expertise e qualidade em imóveis alto padrão em Curitiba</h2>
+      <div className="flex flex-col md:flex-row gap-6">
+        <h2 className="flex-1 md:max-w-[19ch] text-4xl md:text-6xl md:leading-[1.2]">Para aqueles que buscam a máxima experiência em atendimento, expertise e qualidade em imóveis alto padrão em Curitiba.</h2>
         <div className="flex-1">
           <form className="max-w-[40.625rem] ml-auto bg-[#d39864] px-10 pt-8 pb-8">
             <h2 className="text-3xl">ENTRE EM CONTATO</h2>
@@ -38,7 +38,7 @@ const FormSection = ({ corretor }: { corretor: Corretor }) => {
           </form>
         </div>
       </div>
-      <div className="md:flex gap-14 mt-12 md:mt-24">
+      <div className="md:flex gap-14 mt-12 md:mt-16">
         <div className="flex-1">
           <Image
             className="mx-auto rounded-xl"
