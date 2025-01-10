@@ -15,14 +15,12 @@ const getData = async (): Promise<{
     empresa_id,
     filtros: JSON.stringify(
       processFilters({
-        ["corretor.aparecer_site"]: "1"
+        ["corretor.aparecer_site"]: "0"
       })
     )
   })
 
-  const corretores = await fetch(`${uri}/corretores?${params.toString()}`, {
-    next: { tags: ["parceiros"], revalidate: 3600 }
-  })
+  const corretores = await fetch(`${uri}/corretores?${params.toString()}`)
 
   if (!corretores.ok) notFound()
 
@@ -39,10 +37,11 @@ const getData = async (): Promise<{
 const PartnersList = async () => {
   const { corretores, empresa } = await getData()
 
+
   return (
     <ul className="mb-20 grid place-content-around grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-6">
       {corretores
-        .filter(corretor => corretor.aparecer_site)
+        .filter(corretor => corretor.parceiro)
         .map(parceiro => (
           <li
             className="bg-white grid content-between rounded-t-lg overflow-hidden"

@@ -73,14 +73,11 @@ const Partners = async (props: {
         <div className="relative">
           <div
             className="absolute inset-0 -top-[12.6875rem] w-full bg-cover z-0 bg-center before:bg-black/40 before:inset-0 before:absolute before:-z-0"
-            style={{
-              backgroundImage: "url('/banners/amira-banner.webp')"
-            }}
           >
             {corretor.banner_site ? (
               <Image
-                className="object-cover object-center"
-                src={corretor.banner_site ?? ""}
+                className="object-cover object-center -z-10"
+                src={corretor.banner_site}
                 alt="Background"
                 fill
               />
@@ -98,13 +95,16 @@ const Partners = async (props: {
             </div>
             <div className="flex-1 md:pt-12">
               <div className="w-[min(100%,30.625rem)] md:w-[min(100%,40.625rem)] mx-auto md:ml-auto aspect-square">
-                <Image
-                  src={corretor.foto ?? ""}
-                  alt={corretor.nome}
-                  width={650}
-                  height={650}
-                  className="w-full h-full object-cover object-top"
-                />
+                {corretor.foto ? (
+                  <Image
+                    src={corretor.foto}
+                    alt={corretor.nome}
+                    width={650}
+                    height={650}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : null}
+
               </div>
             </div>
           </section>

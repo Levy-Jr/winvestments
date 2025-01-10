@@ -5,7 +5,53 @@ import GoldenTelIcon from "@/public/partners/icons/tel.png"
 import GoldenEmailIcon from "@/public/partners/icons/email.png"
 import GoldenInstagramIcon from "@/public/partners/icons/instagram.png"
 
+const renderVideoContent = (videoUrl: string) => {
+  const isYouTube = videoUrl.toLowerCase().includes('youtube.com') || videoUrl.toLowerCase().includes('youtu.be');
+  const isVimeo = videoUrl.toLowerCase().includes('vimeo.com');
+
+  if (isYouTube || isVimeo) {
+
+    const getYouTubeEmbedUrl = (originalUrl: string) => {
+      try {
+        if (originalUrl.includes('watch?v=')) {
+          const urlObj = new URL(originalUrl);
+          const videoId = urlObj.searchParams.get('v');
+          return `https://www.youtube.com/embed/${videoId};`
+        }
+
+        if (originalUrl.includes('youtu.be/')) {
+          const parts = originalUrl.split('/');
+          const videoId = parts[parts.length - 1];
+          return `https://www.youtube.com/embed/${videoId};`
+        }
+
+        return originalUrl;
+      } catch (error) {
+        return originalUrl;
+      }
+    }
+    return (
+      <iframe
+        className="w-full h-[500px] rounded-xl"
+        title="Vídeo de apresentação"
+        loading="lazy"
+        src={getYouTubeEmbedUrl(videoUrl)}
+        frameBorder="0"
+        allowFullScreen
+      />
+    );
+  }
+
+  return (
+    <video controls>
+      <source src={videoUrl} />
+      Seu navegador não suporta a reprodução de vídeo.
+    </video>
+  );
+};
+
 const FormSection = ({ corretor }: { corretor: Corretor }) => {
+
   return (
     <section className="mt-6">
       <div className="flex flex-col md:flex-row gap-6">
@@ -41,13 +87,7 @@ const FormSection = ({ corretor }: { corretor: Corretor }) => {
       <div className="md:flex gap-14 mt-12 md:mt-16">
         <div className="flex-1">
           {corretor.video_site ? (
-            <Image
-              className="mx-auto rounded-xl"
-              src={corretor.video_site}
-              alt={corretor.nome}
-              width={450}
-              height={450}
-            />
+            renderVideoContent(corretor.video_site)
           ) : null}
 
         </div>
