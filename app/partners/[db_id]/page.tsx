@@ -5,13 +5,8 @@ import Header from "../components/header"
 import processFilters from "@/utils/process-backend-filters"
 import Link from "next/link"
 import Image from "next/image"
-import PartnersLogo from "@/public/partners/logo/footer-logo.png"
-
-import GoldenTelIcon from "@/public/partners/icons/tel.png"
-import GoldenEmailIcon from "@/public/partners/icons/email.png"
-import GoldenInstagramIcon from "@/public/partners/icons/instagram.png"
 import { Suspense } from "react"
-
+import Footer from "../components/footer"
 
 const getData = async (id: string): Promise<{
   corretor: Corretor;
@@ -69,7 +64,7 @@ const Partners = async (props: {
           tel={corretor.telefone}
         />
       </Suspense>
-      <main className="text-black">
+      <main className="text-[#333333] font-barlow">
         <div className="relative">
           <div
             className="absolute inset-0 -top-[12.6875rem] w-full bg-cover z-0 bg-center before:bg-black/40 before:inset-0 before:absolute before:-z-0"
@@ -81,14 +76,19 @@ const Partners = async (props: {
                 alt="Background"
                 fill
               />
-            ) : null}
+            ) : <Image
+              className="object-cover object-center -z-10"
+              src={`/banners/amira-banner.webp`}
+              alt="Background"
+              fill
+            />}
           </div>
           <section className="relative w-container text-white py-6 md:py-0 mx-auto flex flex-col-reverse gap-6 md:gap-0 md:flex-row items-center">
             <div className="flex-1 text-center md:text-start md:pt-12">
-              <h1 className="text-7xl max-w-[13ch]">{corretor.nome}</h1>
-              <h2 className="mt-2 text-3xl">Corretor associado <br />  W Partners</h2>
-              <p className="my-4 text-lg">{corretor.telefone} | <Link href={"mailto:"}>{corretor.email}</Link></p>
-              <div className="inline-grid gap-2 *:inline-block *:bg-[#d39864] *:text-lg *:text-white *:px-4 *:py-3">
+              <h1 className="font-barlow font-light text-7xl max-w-[13ch]">{corretor.nome}</h1>
+              <h2 className="mt-2 text-3xl italic">Corretor associado <br />  W Partners</h2>
+              <p className="my-4 text-2xl">{corretor.telefone} | <Link href={"mailto:"}>{corretor.email}</Link></p>
+              <div className="inline-grid gap-2 *:inline-block *:bg-[#d39864] *:text-2xl *:text-white *:px-4 *:py-3">
                 <Link className="" href={""}>IMÓVEIS EXCLUSIVOS &gt;</Link>
                 <Link className="" href={""}>PROCURAR UM IMÓVEL &gt;</Link>
               </div>
@@ -103,8 +103,7 @@ const Partners = async (props: {
                     height={650}
                     className="w-full h-full object-cover object-top"
                   />
-                ) : null}
-
+                ) : <p>"Corretor sem foto*</p>}
               </div>
             </div>
           </section>
@@ -118,67 +117,7 @@ const Partners = async (props: {
           />
         </div>
       </main>
-
-      <div className="bg-[#333333] text-white py-8">
-        <footer className="w-container mx-auto grid place-content-center">
-          <nav>
-            <ul className="flex justify-center gap-4 items-center">
-              <li>
-                <Link href={"#imoveis"}>PROCURAR IMÓVEIS</Link>
-              </li>
-              <li>
-                <Link href={"#sobre"}>SOBRE</Link>
-              </li>
-              <li>
-                <Link href={"#contato"}>CONTATO</Link>
-              </li>
-            </ul>
-          </nav>
-          <Image
-            className="mx-auto my-12"
-            width={450}
-            height={450}
-            src={PartnersLogo}
-            alt="Parners Logo"
-          />
-          <p className="text-center text-4xl mb-8">{corretor.nome}</p>
-          <ul className="flex flex-col items-center md:flex-row gap-4 *:flex *:items-center *:gap-2">
-            {corretor.instagram ? (
-              <li>
-                <Image
-                  width={40}
-                  height={40}
-                  src={GoldenInstagramIcon}
-                  alt="Ícone dourado do Instagram"
-                />
-                {corretor.instagram}
-              </li>
-            ) : null}
-            {corretor.telefone ? (
-              <li>
-                <Image
-                  width={40}
-                  height={40}
-                  src={GoldenTelIcon}
-                  alt="Ícone dourado de um telefone"
-                />
-                {corretor.telefone}
-              </li>
-            ) : null}
-            {corretor.email ? (
-              <li>
-                <Image
-                  width={40}
-                  height={40}
-                  src={GoldenEmailIcon}
-                  alt="Ícone dourado do email"
-                />
-                {corretor.email}
-              </li>
-            ) : null}
-          </ul>
-        </footer>
-      </div>
+      <Footer corretor={corretor} />
     </>
   )
 }

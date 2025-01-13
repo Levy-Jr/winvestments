@@ -21,8 +21,10 @@ export default {
         'lg-container': 'min(95%,105rem)'
       },
       fontFamily: {
+        barlow: ['var(--font-barlow)'],
+        extraCondensed: ['var(--font-extraCondensed)'],
         newsReader: ['var(--font-news-reader)'],
-        roboto: ['var(--font-roboto)']
+        roboto: ['var(--font-roboto)'],
       }
     },
   },

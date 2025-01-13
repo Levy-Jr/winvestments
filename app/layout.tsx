@@ -1,6 +1,116 @@
+import localFont from "next/font/local"
 import type { Metadata } from "next";
 import { Newsreader, Roboto } from "next/font/google"
 import "./globals.css";
+
+const barlow = localFont({
+  src: [
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-Thin.ttf",
+      weight: "100",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-ExtraLight.ttf",
+      weight: "200",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-Light.ttf",
+      weight: "300",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-Regular.ttf",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-Medium.ttf",
+      weight: "500",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-SemiBold.ttf",
+      weight: "600",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-Bold.ttf",
+      weight: "700",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-ExtraBold.ttf",
+      weight: "800",
+      style: "normal"
+    },
+    {
+      path: "./fonts/BarlowCondensed/BarlowCondensed-Black.ttf",
+      weight: "900",
+      style: "normal"
+    },
+  ],
+  display: "swap",
+  variable: '--font-barlow'
+})
+
+const extraCondensed = localFont({
+  src: [
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedThin.ttf",
+      weight: "100",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedExtraLight.ttf",
+      weight: "200",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedLight.ttf",
+      weight: "300",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensed.ttf",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedItalic.ttf",
+      weight: "400",
+      style: "italic"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedMedium.ttf",
+      weight: "500",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedSemiBold.ttf",
+      weight: "600",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedBold.ttf",
+      weight: "700",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedExtraBold.ttf",
+      weight: "800",
+      style: "normal"
+    },
+    {
+      path: "./fonts/ExtraCondensed/NotoSerif-ExtraCondensedBlack.ttf",
+      weight: "900",
+      style: "normal"
+    },
+  ],
+  display: "swap",
+  variable: '--font-extraCondensed'
+})
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -28,7 +138,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${newsReader.variable} ${roboto.variable} font-roboto text-grayAccent antialiased`}
+        className={`${newsReader.variable} ${roboto.variable} ${barlow.variable} ${extraCondensed.variable} font-roboto text-grayAccent antialiased`}
       >
         {children}
       </body>

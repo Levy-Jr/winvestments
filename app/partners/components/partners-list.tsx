@@ -15,7 +15,7 @@ const getData = async (): Promise<{
     empresa_id,
     filtros: JSON.stringify(
       processFilters({
-        ["corretor.aparecer_site"]: "0"
+        ["corretor.aparecer_site"]: "1"
       })
     )
   })
@@ -41,7 +41,7 @@ const PartnersList = async () => {
   return (
     <ul className="mb-20 grid place-content-around grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-6">
       {corretores
-        .filter(corretor => corretor.parceiro)
+        .filter(corretor => corretor.aparecer_site)
         .map(parceiro => (
           <li
             className="bg-white grid content-between rounded-t-lg overflow-hidden"

@@ -24,14 +24,13 @@ const Header = ({ tel }: { tel: string | null }) => {
     } else {
       document.body.style.maxHeight = 'unset'
       document.body.style.overflow = 'unset'
-
     }
   }, [isOpen])
 
   return (
     <header className="relative z-10 text-white border-b border-b-[#fdfdfc] py-[3.4375rem]">
       <div className="w-container mx-auto flex items-center justify-between">
-        <Link className="ml-2 sm:ml-10" href={"/"}>
+        <Link href={"/"}>
           <Image
             width={400}
             height={400}

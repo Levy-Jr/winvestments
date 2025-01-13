@@ -6,6 +6,69 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 import { Imóvel } from "smart-imob-types"
+import LoadMoreIcon from "@/public/partners/icons/double-arrow-down.png"
+
+const EstateCard = ({ imovel }: { imovel: Imóvel }) => {
+  if (!imovel.vendido) {
+    return <li key={imovel.db_id}>
+      <Link
+        href={`/imovel/venda/${imovel.db_id}`}
+      >
+        <div className="relative w-full aspect-video">
+          <Image
+            src={imovel.fotos[0].source.uri}
+            alt="Foto do imóvel"
+            fill
+          />
+        </div>
+        <h3 className="font-extraCondensed text-6xl mt-4 mb-2">{imovel.tipo}</h3>
+        <p className="text-3xl uppercase">
+          {imovel.bairro ?
+            `${imovel.bairro}`
+            : null}
+          {imovel.area_privativa ?
+            `| ${imovel.area_privativa}M²`
+            : null}
+          {imovel.suítes ?
+            ` | ${imovel.suítes} suíte${Number(imovel.suítes) === 1 ? "" : "s"}`
+            : null}
+          {imovel.vagas ?
+            ` | ${imovel.vagas} vaga${Number(imovel.vagas) === 1 ? "" : "s"}`
+            : null}
+        </p>
+        <p className="font-bold text-3xl">{imovel.vendido ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
+      </Link>
+    </li>
+  }
+
+  if (imovel.vendido) {
+    return <li key={imovel.db_id}>
+      <div className="relative w-full aspect-video">
+        <Image
+          src={imovel.fotos[0].source.uri}
+          alt="Foto do imóvel"
+          fill
+        />
+      </div>
+      <h3 className="font-extraCondensed text-6xl mt-4 mb-2">{imovel.tipo}</h3>
+      <p className="text-3xl uppercase">
+        {imovel.bairro ?
+          `${imovel.bairro}`
+          : null}
+        {imovel.area_privativa ?
+          `| ${imovel.area_privativa}M²`
+          : null}
+        {imovel.suítes ?
+          ` | ${imovel.suítes} suíte${Number(imovel.suítes) === 1 ? "" : "s"}`
+          : null}
+        {imovel.vagas ?
+          ` | ${imovel.vagas} vaga${Number(imovel.vagas) === 1 ? "" : "s"}`
+          : null}
+      </p>
+      <p className="font-bold text-3xl">{imovel.vendido ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
+    </li>
+  }
+}
 
 const EstatesSection = ({ imoveis }: { imoveis: Imóvel[] }) => {
   const [activeTab, setActiveTab] = useState<'forSale' | 'recentlySold'>('forSale')
@@ -27,8 +90,8 @@ const EstatesSection = ({ imoveis }: { imoveis: Imóvel[] }) => {
 
   return (
     <section className="mb-6" id="imoveis">
-      <h2 className="text-6xl text-center my-20">Imóveis Exclusivos</h2>
-      <div className="flex flex-col sm:flex-row gap-14 *:flex-1 *:pb-2 *:border-b-black *:text-3xl">
+      <h2 className="font-extraCondensed tracking-wide text-6xl text-center my-20">Imóveis Exclusivos</h2>
+      <div className="flex flex-col sm:flex-row gap-14 *:flex-1 *:pb-2 *:border-b-black *:text-4xl">
         <button
           onClick={() => setActiveTab('forSale')}
           className={cn("border-b-2", activeTab == "forSale" ? "border-b-4 font-bold" : "")}
@@ -43,37 +106,11 @@ const EstatesSection = ({ imoveis }: { imoveis: Imóvel[] }) => {
           {forSaleEstates
             .slice(0, visibleSaleItems)
             .map(imovel => (
-              <li key={imovel.db_id}>
-                <Link
-                  href={`/imovel/venda/${imovel.db_id}`}
-                >
-                  <div className="relative w-full aspect-video">
-                    <Image
-                      src={imovel.fotos[0].source.uri}
-                      alt="Foto do imóvel"
-                      fill
-                    />
-                  </div>
-                  <h3 className="text-5xl mt-4 mb-2">{imovel.tipo}</h3>
-                  <p className="text-xl uppercase">
-                    {imovel.bairro ?
-                      `${imovel.bairro} | `
-                      : null}
-                    {imovel.area_privativa ?
-                      `${imovel.area_privativa}M² |`
-                      : null}
-                    {imovel.suítes ?
-                      `${imovel.suítes} suíte${Number(imovel.suítes) === 1 ? "" : "s"} | `
-                      : null}
-                    {imovel.vagas ?
-                      `${imovel.vagas} vaga${Number(imovel.vagas) === 1 ? "" : "s"}`
-                      : null}
-                  </p>
-                  <p className="font-bold text-xl">{imovel.vendido ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
-                </Link>
-              </li>
-            ))
-          }
+              <EstateCard
+                imovel={imovel}
+                key={imovel.db_id}
+              />
+            ))}
         </ul>
       }
       {activeTab === "recentlySold" &&
@@ -81,44 +118,26 @@ const EstatesSection = ({ imoveis }: { imoveis: Imóvel[] }) => {
           {recentlySoldEstates
             .slice(0, visibleSoldItems)
             .map(imovel => (
-              <li
+              <EstateCard
+                imovel={imovel}
                 key={imovel.db_id}
-              >
-                <div className="relative w-full aspect-video">
-                  <Image
-                    src={imovel.fotos[0].source.uri}
-                    alt=""
-                    fill
-                  />
-                </div>
-                <h3 className="text-5xl mt-4 mb-2">{imovel.tipo}</h3>
-                <p className="text-xl uppercase">
-                  {imovel.bairro ?
-                    `${imovel.bairro} | `
-                    : null}
-                  {imovel.area_privativa ?
-                    `${imovel.area_privativa}M² |`
-                    : null}
-                  {imovel.suítes ?
-                    `${imovel.suítes} suíte${Number(imovel.suítes) === 1 ? "" : "s"} | `
-                    : null}
-                  {imovel.vagas ?
-                    `${imovel.vagas} vaga${Number(imovel.vagas) === 1 ? "" : "s"}`
-                    : null}
-                </p>
-                <p className="font-bold text-xl">{imovel.venda ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
-              </li>
+              />
             ))
           }
         </ul>
       }
 
-      <div className="mt-10 mb-6 flex justify-center">
+      <div className="mt-16 mb-8 flex justify-center">
         <button
-          className="text-xl text-[#adacb4] before:block before:mb-2 before:w-[95%] before:mx-auto before:h-[.125rem] before:bg-[#adacb4]"
+          className="text-2xl text-[#adacb4] before:block before:mb-2 before:w-[95%] before:mx-auto before:h-[.125rem] before:bg-[#adacb4]"
           onClick={handleLoadMore}
         >
           CARREGAR MAIS
+          <Image
+            className="w-12 mx-auto"
+            src={LoadMoreIcon}
+            alt="Expandir"
+          />
         </button>
       </div>
     </section>

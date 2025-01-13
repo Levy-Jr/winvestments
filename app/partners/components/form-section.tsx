@@ -55,11 +55,11 @@ const FormSection = ({ corretor }: { corretor: Corretor }) => {
   return (
     <section className="mt-6">
       <div className="flex flex-col md:flex-row gap-6">
-        <h2 className="flex-1 md:max-w-[19ch] text-4xl md:text-6xl md:leading-[1.2]">Para aqueles que buscam a máxima experiência em atendimento, expertise e qualidade em imóveis alto padrão em Curitiba.</h2>
+        <h2 className="font-extraCondensed flex-1 md:max-w-[21ch] text-4xl md:text-[4rem] md:leading-[1.2]">Para aqueles que buscam a máxima experiência em atendimento, expertise e qualidade em imóveis alto padrão em Curitiba.</h2>
         <div className="flex-1">
           <form className="max-w-[40.625rem] ml-auto bg-[#d39864] px-10 pt-8 pb-8">
-            <h2 className="text-3xl">ENTRE EM CONTATO</h2>
-            <div className="grid mt-4 gap-4 *:outline-none *:text-xl *:bg-[#e6c5a8] *:placeholder:text-black *:text-black *:px-3 *:py-3">
+            <h2 className="text-5xl">ENTRE EM CONTATO</h2>
+            <div className="grid mt-4 gap-4 *:outline-none *:text-3xl *:bg-[#e6c5a8] *:placeholder:text-black *:text-black *:px-3 *:py-3">
               <input
                 type="text"
                 placeholder="NOME*"
@@ -88,18 +88,18 @@ const FormSection = ({ corretor }: { corretor: Corretor }) => {
         <div className="flex-1">
           {corretor.video_site ? (
             renderVideoContent(corretor.video_site)
-          ) : null}
+          ) : <p className="text-black text-xl">Corretor sem vídeo*</p>}
 
         </div>
         <div id="sobre" className="flex-1 my-auto max-w-[40.625rem] ml-auto">
-          <h2 className="text-6xl">Minha história</h2>
-          <p className="text-2xl mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <h2 className="font-extraCondensed text-6xl">Minha história</h2>
+          <p className="text-3xl mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque in felis nec massa pharetra facilisis ac
             vitae arcu. Vivamus aliquam volutpat arcu, eget
             hendrerit est convallis a. Nunc id leo eget urna imperdiet
             mollis in ut ante. Fusce ut porttitor nulla. Pellentesque
             interdum odio felis.</p>
-          <p className="text-2xl mt-6">Pellentesque laoreet justo a augue lobortis suscipit.
+          <p className="text-3xl mt-6">Pellentesque laoreet justo a augue lobortis suscipit.
             Integer bibendum fringilla interdum. Nulla vel turpis sit
             amet elit interdum euismod non non velit.
           </p>
