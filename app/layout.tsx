@@ -112,6 +112,63 @@ const extraCondensed = localFont({
   variable: '--font-extraCondensed'
 })
 
+const condensed = localFont({
+  src: [
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-Thin.ttf",
+      weight: "100",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-ExtraLight.ttf",
+      weight: "200",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-Light.ttf",
+      weight: "300",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-Regular.ttf",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-Italic.ttf",
+      weight: "400",
+      style: "italic"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-Medium.ttf",
+      weight: "500",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-SemiBold.ttf",
+      weight: "600",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-Bold.ttf",
+      weight: "700",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-ExtraBold.ttf",
+      weight: "800",
+      style: "normal"
+    },
+    {
+      path: "./fonts/Condensed/NotoSerifDisplay-Black.ttf",
+      weight: "900",
+      style: "normal"
+    },
+  ],
+  display: "swap",
+  variable: '--font-condensed'
+})
+
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
@@ -138,7 +195,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${newsReader.variable} ${roboto.variable} ${barlow.variable} ${extraCondensed.variable} font-roboto text-grayAccent antialiased`}
+        className={`${newsReader.variable} ${roboto.variable} ${barlow.variable} ${extraCondensed.variable} ${condensed.variable} font-roboto text-grayAccent antialiased`}
       >
         {children}
       </body>

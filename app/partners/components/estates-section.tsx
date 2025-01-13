@@ -21,7 +21,7 @@ const EstateCard = ({ imovel }: { imovel: Imóvel }) => {
             fill
           />
         </div>
-        <h3 className="font-extraCondensed text-5xl md:text-6xl mt-4 mb-2">{imovel.tipo}</h3>
+        <h3 className="font-condensed italic text-4xl md:text-5xl mt-4 mb-2">{imovel.tipo}</h3>
         <p className="text-2xl md:text-3xl uppercase">
           {imovel.bairro ?
             `${imovel.bairro}`
@@ -50,7 +50,7 @@ const EstateCard = ({ imovel }: { imovel: Imóvel }) => {
           fill
         />
       </div>
-      <h3 className="font-extraCondensed text-5xl md:text-6xl mt-4 mb-2">{imovel.tipo}</h3>
+      <h3 className="font-condensed italic text-4xl md:text-5xl mt-4 mb-2">{imovel.tipo}</h3>
       <p className="text-2xl md:text-3xl uppercase">
         {imovel.bairro ?
           `${imovel.bairro}`

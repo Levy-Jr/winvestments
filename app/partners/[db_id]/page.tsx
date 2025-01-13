@@ -85,8 +85,8 @@ const Partners = async (props: {
           </div>
           <section className="relative w-container text-white py-6 md:py-0 mx-auto flex flex-col-reverse gap-6 md:gap-0 md:flex-row items-center">
             <div className="flex-1 text-center md:text-start md:pt-12">
-              <h1 className="font-barlow font-light text-7xl max-w-[13ch]">{corretor.nome}</h1>
-              <h2 className="mt-2 text-3xl italic">Corretor associado <br />  W Partners</h2>
+              <h1 className="font-condensed italic text-7xl max-w-[13ch]">{corretor.nome}</h1>
+              <h2 className="mt-2 text-3xl font-condensed italic">Corretor associado <br />  W Partners</h2>
               <p className="my-4 text-2xl">{corretor.telefone} | <Link href={"mailto:"}>{corretor.email}</Link></p>
               <div className="inline-grid gap-2 *:inline-block *:bg-[#d39864] *:text-2xl *:text-white *:px-4 *:py-3">
                 <Link className="" href={""}>IMÓVEIS EXCLUSIVOS &gt;</Link>

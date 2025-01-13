@@ -23,6 +23,7 @@ export default {
       fontFamily: {
         barlow: ['var(--font-barlow)'],
         extraCondensed: ['var(--font-extraCondensed)'],
+        condensed: ['var(--font-condensed)'],
         newsReader: ['var(--font-news-reader)'],
         roboto: ['var(--font-roboto)'],
       }

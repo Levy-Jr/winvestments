@@ -25,13 +25,13 @@ const Footer = ({ corretor }: { corretor: Corretor }) => {
           </ul>
         </nav>
         <Image
-          className="mx-auto my-16 md:my-20 w-[18.75rem] md:w-auto"
+          className="mx-auto my-16 md:my-20 w-[18.75rem] md:w-[28.125rem]"
           width={450}
           height={450}
           src={PartnersLogo}
           alt="Parners Logo"
         />
-        <p className="text-center text-3xl md:text-4xl mb-8">{corretor.nome}</p>
+        <p className="font-condensed italic text-center text-3xl md:text-4xl mb-8">{corretor.nome}</p>
         <ul className="flex flex-col md:text-lg md:items-center md:flex-row gap-5 *:flex *:items-center *:gap-2">
           {corretor.instagram ? (
             <li>
