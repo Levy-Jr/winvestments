@@ -32,6 +32,7 @@ const Header = ({ tel }: { tel: string | null }) => {
       <div className="w-container mx-auto flex items-center justify-between">
         <Link href={"/"}>
           <Image
+            className="w-[15rem] md:w-auto"
             width={400}
             height={400}
             src={HeaderLogo}

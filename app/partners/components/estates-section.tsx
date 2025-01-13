@@ -21,8 +21,8 @@ const EstateCard = ({ imovel }: { imovel: Imóvel }) => {
             fill
           />
         </div>
-        <h3 className="font-extraCondensed text-6xl mt-4 mb-2">{imovel.tipo}</h3>
-        <p className="text-3xl uppercase">
+        <h3 className="font-extraCondensed text-5xl md:text-6xl mt-4 mb-2">{imovel.tipo}</h3>
+        <p className="text-2xl md:text-3xl uppercase">
           {imovel.bairro ?
             `${imovel.bairro}`
             : null}
@@ -36,7 +36,7 @@ const EstateCard = ({ imovel }: { imovel: Imóvel }) => {
             ` | ${imovel.vagas} vaga${Number(imovel.vagas) === 1 ? "" : "s"}`
             : null}
         </p>
-        <p className="font-bold text-3xl">{imovel.vendido ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
+        <p className="font-bold text-2xl md:text-3xl">{imovel.vendido ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
       </Link>
     </li>
   }
@@ -50,8 +50,8 @@ const EstateCard = ({ imovel }: { imovel: Imóvel }) => {
           fill
         />
       </div>
-      <h3 className="font-extraCondensed text-6xl mt-4 mb-2">{imovel.tipo}</h3>
-      <p className="text-3xl uppercase">
+      <h3 className="font-extraCondensed text-5xl md:text-6xl mt-4 mb-2">{imovel.tipo}</h3>
+      <p className="text-2xl md:text-3xl uppercase">
         {imovel.bairro ?
           `${imovel.bairro}`
           : null}
@@ -65,7 +65,7 @@ const EstateCard = ({ imovel }: { imovel: Imóvel }) => {
           ` | ${imovel.vagas} vaga${Number(imovel.vagas) === 1 ? "" : "s"}`
           : null}
       </p>
-      <p className="font-bold text-3xl">{imovel.vendido ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
+      <p className="font-bold text-2xl md:text-3xl">{imovel.vendido ? "Vendido" : formatCurrency(imovel.preço_venda)}</p>
     </li>
   }
 }
@@ -91,7 +91,7 @@ const EstatesSection = ({ imoveis }: { imoveis: Imóvel[] }) => {
   return (
     <section className="mb-6" id="imoveis">
       <h2 className="font-extraCondensed tracking-wide text-6xl text-center my-20">Imóveis Exclusivos</h2>
-      <div className="flex flex-col sm:flex-row gap-14 *:flex-1 *:pb-2 *:border-b-black *:text-4xl">
+      <div className="flex flex-col sm:flex-row gap-14 *:flex-1 *:pb-2 *:border-b-black *:text-3xl md:*:text-4xl">
         <button
           onClick={() => setActiveTab('forSale')}
           className={cn("border-b-2", activeTab == "forSale" ? "border-b-4 font-bold" : "")}

@@ -12,7 +12,7 @@ const Footer = ({ corretor }: { corretor: Corretor }) => {
     <div className="bg-[#333333] text-white py-8">
       <footer className="w-container mx-auto grid place-content-center">
         <nav>
-          <ul className="flex justify-center gap-11 text-lg items-center">
+          <ul className="flex justify-center gap-5 md:gap-11 md:text-lg items-center">
             <li>
               <Link href={"#imoveis"}>PROCURAR IMÓVEIS</Link>
             </li>
@@ -25,14 +25,14 @@ const Footer = ({ corretor }: { corretor: Corretor }) => {
           </ul>
         </nav>
         <Image
-          className="mx-auto my-20"
+          className="mx-auto my-16 md:my-20 w-[18.75rem] md:w-auto"
           width={450}
           height={450}
           src={PartnersLogo}
           alt="Parners Logo"
         />
-        <p className="text-center text-4xl mb-8">{corretor.nome}</p>
-        <ul className="flex flex-col text-lg items-center md:flex-row gap-5 *:flex *:items-center *:gap-2">
+        <p className="text-center text-3xl md:text-4xl mb-8">{corretor.nome}</p>
+        <ul className="flex flex-col md:text-lg md:items-center md:flex-row gap-5 *:flex *:items-center *:gap-2">
           {corretor.instagram ? (
             <li>
               <Image
