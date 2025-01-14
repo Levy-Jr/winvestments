@@ -94,7 +94,7 @@ const Partners = async (props: {
               </div>
             </div>
             <div className="flex-1 md:pt-12">
-              <div className="w-[min(100%,30.625rem)] md:w-[min(100%,40.625rem)] mx-auto md:ml-auto aspect-square">
+              <div className="w-[min(100%,30.625rem)] md:w-[min(100%,40.625rem)] mx-auto md:mx-0 md:ml-auto aspect-square">
                 {corretor.foto ? (
                   <Image
                     src={corretor.foto}
