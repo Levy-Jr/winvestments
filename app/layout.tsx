@@ -2,6 +2,9 @@ import localFont from "next/font/local"
 import type { Metadata } from "next";
 import { Newsreader, Roboto } from "next/font/google"
 import "./globals.css";
+import { WppModalProvider } from "@/contexts/wpp-modal-context";
+import { ModalProvider } from "@/components/wpp-modal";
+import WppBtn from "@/components/wpp-btn";
 
 const barlow = localFont({
   src: [
@@ -197,6 +200,11 @@ export default function RootLayout({
       <body
         className={`${newsReader.variable} ${roboto.variable} ${barlow.variable} ${extraCondensed.variable} ${condensed.variable} font-roboto text-grayAccent antialiased`}
       >
+
+        <WppModalProvider>
+          <ModalProvider />
+          <WppBtn />
+        </WppModalProvider>
         {children}
       </body>
     </html>

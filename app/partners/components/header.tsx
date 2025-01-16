@@ -28,7 +28,7 @@ const Header = ({ tel }: { tel: string | null }) => {
   }, [isOpen])
 
   return (
-    <header className="relative z-10 text-white border-b border-b-[#fdfdfc] py-[3.4375rem]">
+    <header className="relative z-50 text-white border-b border-b-[#fdfdfc] py-[3.4375rem]">
       <div className="w-container mx-auto flex items-center justify-between">
         <Link href={"/"}>
           <Image
@@ -40,7 +40,7 @@ const Header = ({ tel }: { tel: string | null }) => {
           />
         </Link>
         <nav>
-          <ul className={cn("md:flex items-center gap-12 text-lg", isOpen ? "fixed grid place-content-center text-center inset-0 bg-black/90 z-20" : "hidden")}>
+          <ul className={cn("md:flex items-center gap-12 text-lg", isOpen ? "fixed grid place-content-center text-center inset-0 bg-black/90 z-50" : "hidden")}>
             <li>
               <Link href={"#imoveis"}>PROCURAR IMÓVEIS</Link>
             </li>
@@ -57,7 +57,7 @@ const Header = ({ tel }: { tel: string | null }) => {
             ) : null}
           </ul>
           <button
-            className={cn("relative w-[1.125rem] grid gap-1 *:bg-white *:w-full *:h-[.125rem] md:hidden", isOpen ? "fixed right-4 z-20" : "")}
+            className={cn("relative w-[1.125rem] grid gap-1 *:bg-white *:w-full *:h-[.125rem] md:hidden", isOpen ? "fixed right-4 z-50" : "")}
             onClick={toggleMenu}
           >
             <div></div>

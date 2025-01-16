@@ -7,6 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Suspense } from "react"
 import Footer from "../components/footer"
+import WppBtn from "@/components/wpp-btn"
 
 const getData = async (id: string): Promise<{
   corretor: Corretor;

@@ -15,10 +15,6 @@ export default function WInvestmentsLayout({
       <Suspense>
         <HeaderNav />
       </Suspense>
-      <WppModalProvider>
-        <ModalProvider />
-        <WppBtn />
-      </WppModalProvider>
       {children}
       <Footer />
     </>
