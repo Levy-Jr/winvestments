@@ -5,8 +5,7 @@ import { notFound } from "next/navigation";
 import { Corretor, Empresa } from "smart-imob-types"
 
 const getData = async (): Promise<{
-  corretores: Corretor[];
-  empresa: Empresa
+  corretores: Corretor[]
 }> => {
   const uri = process.env.BACKEND_API_URI ?? process.env.NEXT_PUBLIC_BACKEND_API_URI;
   const empresa_id: any = process.env.EMPRESA_ID ?? process.env.NEXT_PUBLIC_EMPRESA_ID;
@@ -15,7 +14,7 @@ const getData = async (): Promise<{
     empresa_id,
     filtros: JSON.stringify(
       processFilters({
-        ["corretor.aparecer_site"]: "1"
+        ["corretor.aparecer_site"]: "0"
       })
     )
   })
@@ -29,19 +28,18 @@ const getData = async (): Promise<{
   if (!enterprise.ok) notFound()
 
   return {
-    corretores: await corretores.json(),
-    empresa: await enterprise.json()
+    corretores: await corretores.json()
   }
 }
 
 const PartnersList = async () => {
-  const { corretores, empresa } = await getData()
+  const { corretores } = await getData()
 
 
   return (
     <ul className="mb-20 grid place-content-around grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-6">
       {corretores
-        .filter(corretor => corretor.aparecer_site)
+        .filter(corretor => corretor.parceiro)
         .map(parceiro => (
           <li
             className="bg-white grid content-between rounded-t-lg overflow-hidden"

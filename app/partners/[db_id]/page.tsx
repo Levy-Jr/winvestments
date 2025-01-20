@@ -7,7 +7,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { Suspense } from "react"
 import Footer from "../components/footer"
-import WppBtn from "@/components/wpp-btn"
 
 const getData = async (id: string): Promise<{
   corretor: Corretor;
@@ -68,7 +67,7 @@ const Partners = async (props: {
       <main className="text-[#333333] font-barlow">
         <div className="relative">
           <div
-            className="absolute inset-0 -top-[12.6875rem] w-full bg-cover z-0 bg-center before:bg-black/40 before:inset-0 before:absolute before:-z-0"
+            className="absolute inset-0 -top-[12.6875rem] w-full z-0 before:bg-black/40 before:inset-0 before:absolute before:-z-0"
           >
             {corretor.banner_site ? (
               <Image
@@ -88,7 +87,7 @@ const Partners = async (props: {
             <div className="flex-1 text-center md:text-start md:pt-12">
               <h1 className="font-condensed italic text-7xl max-w-[13ch]">{corretor.nome}</h1>
               <h2 className="mt-2 text-3xl font-condensed italic">Corretor associado <br />  W Partners</h2>
-              <p className="my-4 text-2xl">{corretor.telefone} | <Link href={"mailto:"}>{corretor.email}</Link></p>
+              <p className="my-4 text-2xl">{corretor.telefone ? corretor.telefone + " |" : null}  <Link href={"mailto:"}>{corretor.email}</Link></p>
               <div className="inline-grid gap-2 *:inline-block *:bg-[#d39864] *:text-2xl *:text-white *:px-4 *:py-3">
                 <Link className="" href={""}>IMÓVEIS EXCLUSIVOS &gt;</Link>
                 <Link className="" href={""}>PROCURAR UM IMÓVEL &gt;</Link>
