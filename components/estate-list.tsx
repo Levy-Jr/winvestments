@@ -24,7 +24,9 @@ const EstateList = ({ imoveis }: { imoveis: Imóvel[] }) => {
         handleButtonClick={handleButtonClick}
         orderBtnToggle={orderBtnToggle}
       />
-      {activeButton === "grid" || activeButton === "rows" ? (
+      {activeButton === "map" ? (
+        <EstatesMap imoveis={imoveis} />
+      ) : (
         <ul className={cn("grid w-[min(100%,43.75rem)] mx-auto lg:w-auto lg:mx-0 center lg:grid-cols-2 gap-10",
           activeButton === "rows" ? "lg:grid-cols-1 w-auto" : null
         )}>
@@ -34,10 +36,11 @@ const EstateList = ({ imoveis }: { imoveis: Imóvel[] }) => {
               key={index}
               imovel={imovel}
             />
-          ))}
+          )
+          )}
         </ul>
-      ) : <EstatesMap />}
-
+      )
+      }
     </>
   )
 }
